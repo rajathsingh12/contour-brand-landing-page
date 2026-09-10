@@ -4,7 +4,16 @@ export type BodyShape = "apple" | "pear" | "hourglass" | "rectangle" | "inverted
 
 export type FitObjective = "smooth" | "define" | "balance" | "lengthen" | "enhance" | "skim" | "structure";
 
-export type Concern = "midsection" | "upper_arm" | "hips" | "thighs" | "shoulders" | "legs";
+export type Concern = "midsection" | "upper_arm" | "hips" | "thighs" | "shoulders" | "legs" | "bust" | "overall";
+
+export type FitPreference = "fitted" | "structured" | "relaxed" | "oversized";
+
+export interface BodyShapeData {
+  shape: BodyShape;
+  description: string;
+  recommendedObjectives: FitObjective[];
+  stylingTips: string[];
+}
 
 export type Category = "top" | "dress" | "trouser" | "coord" | "party";
 
