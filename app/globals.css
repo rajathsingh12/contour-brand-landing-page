@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ── Contour theme system ── */
+/* Default: Burgundy */
+:root {
+  --c-bg: #faf8f6;
+  --c-surface: #ffffff;
+  --c-text: #1a1a1a;
+  --c-text-secondary: #5c5c5c;
+  --c-accent: #6b2139;
+  --c-accent-hover: #8a2b4a;
+  --c-accent-light: #f2e4e9;
+  --c-border: #e5e0dc;
+  --c-badge-bg: #f5f0ed;
+  --c-badge-text: #6b2139;
+}
+
+[data-theme="sage"] {
+  --c-bg: #f6f8f5;
+  --c-surface: #ffffff;
+  --c-text: #1a1a1a;
+  --c-text-secondary: #5c5c5c;
+  --c-accent: #4a6741;
+  --c-accent-hover: #5a7d50;
+  --c-accent-light: #e4ede2;
+  --c-border: #dce5d9;
+  --c-badge-bg: #edf2eb;
+  --c-badge-text: #4a6741;
+}
+
+[data-theme="midnight"] {
+  --c-bg: #f5f5f8;
+  --c-surface: #ffffff;
+  --c-text: #1a1a1a;
+  --c-text-secondary: #5c5c5c;
+  --c-accent: #2c3e6b;
+  --c-accent-hover: #3a5190;
+  --c-accent-light: #e0e4f0;
+  --c-border: #d8dce8;
+  --c-badge-bg: #ebeef5;
+  --c-badge-text: #2c3e6b;
+}
+
+[data-theme="ember"] {
+  --c-bg: #faf6f4;
+  --c-surface: #ffffff;
+  --c-text: #1a1a1a;
+  --c-text-secondary: #5c5c5c;
+  --c-accent: #b0582a;
+  --c-accent-hover: #c96a35;
+  --c-accent-light: #f5e8de;
+  --c-border: #e8ddd4;
+  --c-badge-bg: #f5efe9;
+  --c-badge-text: #b0582a;
+}
+
+@theme inline {
+  --color-c-bg: var(--c-bg);
+  --color-c-surface: var(--c-surface);
+  --color-c-text: var(--c-text);
+  --color-c-text-secondary: var(--c-text-secondary);
+  --color-c-accent: var(--c-accent);
+  --color-c-accent-hover: var(--c-accent-hover);
+  --color-c-accent-light: var(--c-accent-light);
+  --color-c-border: var(--c-border);
+  --color-c-badge-bg: var(--c-badge-bg);
+  --color-c-badge-text: var(--c-badge-text);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-dm-sans);
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), serif;
+}
