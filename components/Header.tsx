@@ -21,7 +21,10 @@ const FIT_LINKS = [
   { href: "/shop?fit=lengthen", label: "Lengthen" },
   { href: "/shop?fit=enhance", label: "Enhance" },
   { href: "/shop?fit=skim", label: "Skim" },
+  { href: "/shop?fit=structure", label: "Structure" },
 ];
+
+const NAV_LINK_CLASS = "text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors";
 
 function Dropdown({ label, links }: { label: string; links: { href: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
@@ -31,7 +34,7 @@ function Dropdown({ label, links }: { label: string; links: { href: string; labe
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button className="text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors">
+      <button className={NAV_LINK_CLASS}>
         {label}
       </button>
       {open && (
@@ -66,12 +69,12 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors">Home</Link>
+            <Link href="/" className={NAV_LINK_CLASS}>Home</Link>
             <Dropdown label="Shop" links={SHOP_LINKS} />
             <Dropdown label="Shop by Fit" links={FIT_LINKS} />
-            <Link href="/fit-finder" className="text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors">Fit Finder</Link>
-            <Link href="/size-guide" className="text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors">Size Guide</Link>
-            <Link href="/about" className="text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors">Our Approach</Link>
+            <Link href="/fit-finder" className={NAV_LINK_CLASS}>Fit Finder</Link>
+            <Link href="/size-guide" className={NAV_LINK_CLASS}>Size Guide</Link>
+            <Link href="/about" className={NAV_LINK_CLASS}>Our Approach</Link>
           </nav>
 
           <div className="flex items-center gap-3">

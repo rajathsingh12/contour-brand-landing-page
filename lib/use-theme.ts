@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 export type Theme = "burgundy" | "sage" | "midnight" | "ember";
 
@@ -11,15 +11,16 @@ export const THEMES: { id: Theme; label: string; swatch: string }[] = [
   { id: "ember", label: "Ember", swatch: "#b0582a" },
 ];
 
-export function useTheme() {
-  const [theme, setThemeState] = useState<Theme>("burgundy");
+function getInitialTheme(): Theme {
+  if (typeof document !== "undefined") {
+    const attr = document.documentElement.getAttribute("data-theme") as Theme | null;
+    if (attr && THEMES.some((t) => t.id === attr)) return attr;
+  }
+  return "burgundy";
+}
 
-  useEffect(() => {
-    const stored = localStorage.getItem("contour-theme") as Theme | null;
-    if (stored && THEMES.some((t) => t.id === stored)) {
-      setThemeState(stored);
-    }
-  }, []);
+export function useTheme() {
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t);
