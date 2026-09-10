@@ -35,4 +35,6 @@ export interface Product {
   styleTags: string[];
   images: string[];
   modelInfo: { size: string; height: string };
+  whyWeDesignedIt: string;
+  fitDescription: string;
 }

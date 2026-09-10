@@ -23,6 +23,8 @@ export const products: Product[] = [
     styleTags: ["essential", "layering"],
     images: ["/images/products/sculpt-tee.jpg"],
     modelInfo: { size: "2XL", height: "5'6\"" },
+    whyWeDesignedIt: "Built with internal contouring panels in modal jersey that create a smoother midsection line without compression. The structured shoulder and relaxed body balance proportion while keeping you comfortable all day.",
+    fitDescription: "Structured through shoulders / Smoothing through midsection / Relaxed through hip",
   },
   {
     id: "drop-shoulder-top",
@@ -42,6 +44,8 @@ export const products: Product[] = [
     styleTags: ["relaxed", "weekend"],
     images: ["/images/products/drop-shoulder-top.jpg"],
     modelInfo: { size: "3XL", height: "5'5\"" },
+    whyWeDesignedIt: "The extended drop shoulder softens a broader shoulder line while the viscose crepe drape skims the body without clinging. Cut longer at the back for coverage that moves with you.",
+    fitDescription: "Relaxed through shoulders / Skimming through body / Extended at back hem",
   },
   {
     id: "waist-define-top",
@@ -61,6 +65,8 @@ export const products: Product[] = [
     styleTags: ["workwear", "structured"],
     images: ["/images/products/waist-define-top.jpg"],
     modelInfo: { size: "2XL", height: "5'7\"" },
+    whyWeDesignedIt: "Ponte fabric with medium stretch holds its shape through the day. Strategic seaming at the waist creates definition without a belt, giving structure to rectangle and hourglass frames alike.",
+    fitDescription: "Fitted through bust / Defined at waist / Structured through hip",
   },
   {
     id: "relaxed-shirt",
@@ -80,6 +86,8 @@ export const products: Product[] = [
     styleTags: ["classic", "layering"],
     images: ["/images/products/relaxed-shirt.jpg"],
     modelInfo: { size: "3XL", height: "5'4\"" },
+    whyWeDesignedIt: "A classic shirt pattern re-drafted for fuller proportions — wider through bust and midsection, longer through torso, with a curved hem that sits cleanly whether tucked or untucked.",
+    fitDescription: "Relaxed through bust / Skimming through midsection / Long through torso",
   },
   {
     id: "drape-top",
@@ -99,6 +107,8 @@ export const products: Product[] = [
     styleTags: ["draped", "evening"],
     images: ["/images/products/drape-top.jpg"],
     modelInfo: { size: "2XL", height: "5'6\"" },
+    whyWeDesignedIt: "Matte jersey with a cowl-adjacent neckline draws the eye upward and creates visual interest at the bust. The fabric drapes over hips without pulling, making it a go-to for pear and hourglass frames.",
+    fitDescription: "Enhanced through neckline / Relaxed through body / Draping over hips",
   },
 
   // ── Dresses (5) ──────────────────────────────────────────
@@ -120,6 +130,8 @@ export const products: Product[] = [
     styleTags: ["sculpted", "polished"],
     images: ["/images/products/sculpt-midi.jpg"],
     modelInfo: { size: "3XL", height: "5'5\"" },
+    whyWeDesignedIt: "Heavy ponte with internal smoothing panels through the midsection creates a sculpted line from bust to knee. The structured bodice defines the waist while the midi length elongates the leg.",
+    fitDescription: "Structured through bust / Smoothing through midsection / Defined at waist / Straight through hip to knee",
   },
   {
     id: "a-line-midi",
@@ -139,6 +151,8 @@ export const products: Product[] = [
     styleTags: ["a-line", "versatile"],
     images: ["/images/products/a-line-midi.jpg"],
     modelInfo: { size: "4XL", height: "5'3\"" },
+    whyWeDesignedIt: "Lyocell blend falls from a fitted bodice into a full A-line skirt that skims over hips and thighs. The higher waist placement creates a longer visual leg line for apple and pear shapes.",
+    fitDescription: "Fitted through bodice / A-line through hip and thigh / Midi length below knee",
   },
   {
     id: "wrap-dress",
@@ -158,6 +172,8 @@ export const products: Product[] = [
     styleTags: ["wrap", "classic"],
     images: ["/images/products/wrap-dress.jpg"],
     modelInfo: { size: "2XL", height: "5'7\"" },
+    whyWeDesignedIt: "The true wrap construction adjusts to your waist rather than forcing a fixed measurement. Matte jersey with stretch wraps and ties at your natural waist, creating definition for every body shape.",
+    fitDescription: "Wrap through bust / Defined at natural waist / Relaxed A-line through skirt",
   },
   {
     id: "shirt-dress",
@@ -177,6 +193,8 @@ export const products: Product[] = [
     styleTags: ["classic", "belted"],
     images: ["/images/products/shirt-dress.jpg"],
     modelInfo: { size: "3XL", height: "5'6\"" },
+    whyWeDesignedIt: "A button-front shirt dress with a relaxed body and elongating vertical line. The cotton construction and collar detailing balance broader shoulders while the midi length creates proportion.",
+    fitDescription: "Structured at collar and shoulders / Relaxed through body / Straight through hip / Midi length",
   },
   {
     id: "ruched-side-dress",
@@ -196,6 +214,8 @@ export const products: Product[] = [
     styleTags: ["ruched", "evening"],
     images: ["/images/products/ruched-side-dress.jpg"],
     modelInfo: { size: "2XL", height: "5'5\"" },
+    whyWeDesignedIt: "Side ruching in stretch jersey creates a smoothing, gathering effect through the midsection and over the hips. The asymmetric drape flatters without compression — the fabric does the work.",
+    fitDescription: "Fitted through bust / Ruched through midsection / Smoothing over hips / Knee-length hem",
   },
 
   // ── Trousers (4) ─────────────────────────────────────────
@@ -217,6 +237,8 @@ export const products: Product[] = [
     styleTags: ["wide-leg", "workwear"],
     images: ["/images/products/wide-leg-trouser.jpg"],
     modelInfo: { size: "3XL", height: "5'6\"" },
+    whyWeDesignedIt: "A wide leg from a high-rise waist creates a long, balanced line that visually equalises hips and shoulders. Twill suiting with minimal stretch holds its drape through the day.",
+    fitDescription: "High-rise waist / Relaxed through hip / Wide through leg / Full length",
   },
   {
     id: "sculpt-trouser",
@@ -236,6 +258,8 @@ export const products: Product[] = [
     styleTags: ["sculpted", "polished"],
     images: ["/images/products/sculpt-trouser.jpg"],
     modelInfo: { size: "2XL", height: "5'7\"" },
+    whyWeDesignedIt: "High-stretch ponte with a contoured waistband smooths the midsection while defining the waist. The tapered leg creates structure through the thigh without compression.",
+    fitDescription: "Smoothing high-rise waist / Structured through hip / Tapered through thigh / Straight to ankle",
   },
   {
     id: "straight-leg-trouser",
@@ -255,6 +279,8 @@ export const products: Product[] = [
     styleTags: ["classic", "essential"],
     images: ["/images/products/straight-leg-trouser.jpg"],
     modelInfo: { size: "3XL", height: "5'5\"" },
+    whyWeDesignedIt: "Cotton-polyester blend with enough stretch for comfort in a clean straight leg. The mid-rise sits at the natural waist, lengthening the leg line while balancing thighs.",
+    fitDescription: "Mid-rise waist / Relaxed through hip / Straight through thigh and leg / Full length",
   },
   {
     id: "high-rise-flare",
@@ -274,6 +300,8 @@ export const products: Product[] = [
     styleTags: ["flare", "retro"],
     images: ["/images/products/high-rise-flare.jpg"],
     modelInfo: { size: "2XL", height: "5'7\"" },
+    whyWeDesignedIt: "A true high-rise flare — fitted through the thigh, opening below the knee to create an elongating, proportion-balancing silhouette. The structured waistband defines the waist and smooths the midsection.",
+    fitDescription: "High-rise defined waist / Fitted through hip and thigh / Flare from knee / Full length",
   },
 
   // ── Co-ords (3) ──────────────────────────────────────────
@@ -295,6 +323,8 @@ export const products: Product[] = [
     styleTags: ["co-ord", "polished"],
     images: ["/images/products/sculpt-coord.jpg"],
     modelInfo: { size: "3XL", height: "5'5\"" },
+    whyWeDesignedIt: "Matching ponte separates designed as one continuous line. The top smooths through the midsection while the trouser structures through the thigh — worn together, they create a defined, polished silhouette.",
+    fitDescription: "Top: Smoothing through midsection, defined at waist / Bottom: Structured through thigh, straight to ankle",
   },
   {
     id: "relaxed-coord",
@@ -314,6 +344,8 @@ export const products: Product[] = [
     styleTags: ["co-ord", "relaxed"],
     images: ["/images/products/relaxed-coord.jpg"],
     modelInfo: { size: "4XL", height: "5'4\"" },
+    whyWeDesignedIt: "Linen-viscose blend in a relaxed, unstructured silhouette that skims the body and balances broader shoulders. The matching set creates a cohesive look without needing to coordinate separates.",
+    fitDescription: "Top: Relaxed through body, below-hip length / Bottom: Easy through hip, straight to ankle",
   },
   {
     id: "work-coord",
@@ -333,6 +365,8 @@ export const products: Product[] = [
     styleTags: ["co-ord", "workwear"],
     images: ["/images/products/work-coord.jpg"],
     modelInfo: { size: "2XL", height: "5'6\"" },
+    whyWeDesignedIt: "Professional suiting fabric in a co-ord set with structured shoulders and a defined waist. The trouser has a lengthening full-length cut that balances proportions for the office and beyond.",
+    fitDescription: "Top: Structured shoulders, defined at waist / Bottom: High-rise, straight full-length leg",
   },
 
   // ── Party (2) ────────────────────────────────────────────
@@ -354,6 +388,8 @@ export const products: Product[] = [
     styleTags: ["statement", "evening"],
     images: ["/images/products/statement-dress.jpg"],
     modelInfo: { size: "2XL", height: "5'6\"" },
+    whyWeDesignedIt: "Stretch crepe with built-in structure that enhances curves while smoothing the midsection. Bold colour options and a knee length make this the piece you reach for when you want to be noticed.",
+    fitDescription: "Structured through bust / Smoothing through midsection / Defined at waist / Fitted through hip to knee",
   },
   {
     id: "night-out-top",
@@ -373,5 +409,7 @@ export const products: Product[] = [
     styleTags: ["party", "statement"],
     images: ["/images/products/night-out-top.jpg"],
     modelInfo: { size: "3XL", height: "5'5\"" },
+    whyWeDesignedIt: "Shimmer-finish fabric with structured seaming through the bust that enhances the neckline while the relaxed body skims over the midsection. Designed to pair with high-rise trousers for a balanced evening look.",
+    fitDescription: "Structured through bust / Relaxed through midsection / Hip-length hem",
   },
 ];
