@@ -5,7 +5,7 @@ import type { Size, BodyShape, Concern, FitObjective, FitPreference } from "@/li
 import type { UserPreferences } from "@/lib/fit-engine";
 import { rankProducts } from "@/lib/fit-engine";
 import { generateProfileName } from "@/data/fitProfiles";
-import { bodyShapes } from "@/data/bodyShapes";
+import { bodyShapes as bodyShapesData } from "@/data/bodyShapes";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -26,7 +26,8 @@ const GOAL_OPTIONS: { value: FitObjective; label: string }[] = [
   { value: "balance", label: "Balance" },
   { value: "lengthen", label: "Lengthen" },
   { value: "enhance", label: "Enhance" },
-  { value: "skim", label: "Relax" },
+  { value: "skim", label: "Skim" },
+  { value: "structure", label: "Structure" },
 ];
 
 const FIT_OPTIONS: { value: FitPreference; label: string }[] = [
@@ -37,21 +38,22 @@ const FIT_OPTIONS: { value: FitPreference; label: string }[] = [
 ];
 
 const SHAPE_OPTIONS: { value: BodyShape | "not-sure"; label: string; description: string }[] = [
-  { value: "apple", label: "Apple", description: "More volume around midsection" },
-  { value: "pear", label: "Pear", description: "More volume around hips and thighs" },
-  { value: "hourglass", label: "Hourglass", description: "Defined waist, balanced bust and hips" },
-  { value: "rectangle", label: "Rectangle", description: "Less natural waist definition" },
-  { value: "inverted-triangle", label: "Inverted Triangle", description: "Broader shoulders relative to hips" },
+  ...bodyShapesData.map((bs) => ({
+    value: bs.shape as BodyShape,
+    label: bs.shape === "inverted-triangle" ? "Inverted Triangle" : bs.shape.charAt(0).toUpperCase() + bs.shape.slice(1),
+    description: bs.description,
+  })),
   { value: "not-sure", label: "Not Sure", description: "We’ll recommend across all shapes" },
 ];
 
-const GOAL_LABEL: Record<string, string> = {
+const GOAL_LABEL: Record<FitObjective, string> = {
   define: "defined waist",
   smooth: "smoothed midsection",
   balance: "balanced proportions",
   lengthen: "lengthened lines",
   enhance: "enhanced emphasis",
   skim: "relaxed drape",
+  structure: "added structure",
 };
 
 function SelectCard({
@@ -68,6 +70,7 @@ function SelectCard({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onClick}
       className={`text-left px-5 py-4 rounded-lg border transition-all ${
         selected
@@ -123,7 +126,7 @@ export default function FitFinderPage() {
       : null;
 
   const results = prefs ? rankProducts(products, prefs, 3) : [];
-  const profileName = prefs ? generateProfileName(goals[0], fitPref!) : "";
+  const profileName = prefs ? generateProfileName(goals[0], prefs.fitPreference) : "";
   const preferenceSummary = prefs
     ? goals.map((g) => GOAL_LABEL[g] || g).join(" + ")
     : "";
