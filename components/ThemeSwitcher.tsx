@@ -38,7 +38,7 @@ export function ThemeSwitcher() {
               onClick={() => { setTheme(t.id); setOpen(false); }}
               aria-label={t.label}
               className={`w-7 h-7 rounded-full border-2 transition-transform ${
-                theme === t.id ? "border-c-text scale-110" : "border-transparent hover:scale-105"
+                theme === t.id ? "border-c-text scale-110" : "border-c-border hover:scale-105"
               }`}
               style={{ backgroundColor: t.swatch }}
             />

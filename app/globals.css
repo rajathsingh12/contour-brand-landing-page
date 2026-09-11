@@ -54,6 +54,33 @@
   --c-badge-text: #b0582a;
 }
 
+/* ── Dark mode variants ── */
+[data-mode="dark"] {
+  --c-bg: #1a1a1a;
+  --c-surface: #242424;
+  --c-text: #f5f5f5;
+  --c-text-secondary: #a0a0a0;
+  --c-accent-light: #2e2228;
+  --c-border: #3a3a3a;
+  --c-badge-bg: #2a2a2a;
+  --c-badge-text: #e8a0b8;
+}
+
+[data-mode="dark"][data-theme="sage"] {
+  --c-accent-light: #222e20;
+  --c-badge-text: #8fbf82;
+}
+
+[data-mode="dark"][data-theme="midnight"] {
+  --c-accent-light: #1e2338;
+  --c-badge-text: #8a9fd4;
+}
+
+[data-mode="dark"][data-theme="ember"] {
+  --c-accent-light: #2e2218;
+  --c-badge-text: #d4956a;
+}
+
 @theme inline {
   --color-c-bg: var(--c-bg);
   --color-c-surface: var(--c-surface);

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { ModeToggle } from "./ModeToggle";
 
 const SHOP_LINKS = [
   { href: "/shop", label: "All" },
@@ -78,6 +79,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <ModeToggle />
             <ThemeSwitcher />
             {/* Mobile menu button */}
             <button

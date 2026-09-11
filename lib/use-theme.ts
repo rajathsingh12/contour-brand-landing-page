@@ -19,8 +19,18 @@ function getInitialTheme(): Theme {
   return "burgundy";
 }
 
+export type Mode = "light" | "dark";
+
+function getInitialMode(): Mode {
+  if (typeof document !== "undefined") {
+    return document.documentElement.getAttribute("data-mode") === "dark" ? "dark" : "light";
+  }
+  return "light";
+}
+
 export function useTheme() {
   const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+  const [mode, setModeState] = useState<Mode>(getInitialMode);
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t);
@@ -28,5 +38,19 @@ export function useTheme() {
     localStorage.setItem("contour-theme", t);
   }, []);
 
-  return { theme, setTheme };
+  const setMode = useCallback((m: Mode) => {
+    setModeState(m);
+    if (m === "dark") {
+      document.documentElement.setAttribute("data-mode", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-mode");
+    }
+    localStorage.setItem("contour-mode", m);
+  }, []);
+
+  const toggleMode = useCallback(() => {
+    setMode(mode === "dark" ? "light" : "dark");
+  }, [mode, setMode]);
+
+  return { theme, setTheme, mode, setMode, toggleMode };
 }

@@ -175,7 +175,7 @@ export default function Home() {
           </p>
           <Link
             href="/fit-finder"
-            className="mt-10 inline-flex items-center px-10 py-4 bg-white text-c-accent font-medium text-sm uppercase tracking-wider rounded-full hover:bg-c-bg transition-colors"
+            className="mt-10 inline-flex items-center px-10 py-4 bg-c-surface text-c-accent font-medium text-sm uppercase tracking-wider rounded-full hover:bg-c-bg transition-colors"
           >
             Take the 60-Second Fit Finder
           </Link>
