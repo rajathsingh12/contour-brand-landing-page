@@ -49,8 +49,17 @@ export function useTheme() {
   }, []);
 
   const toggleMode = useCallback(() => {
-    setMode(mode === "dark" ? "light" : "dark");
-  }, [mode, setMode]);
+    setModeState((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      if (next === "dark") {
+        document.documentElement.setAttribute("data-mode", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-mode");
+      }
+      localStorage.setItem("contour-mode", next);
+      return next;
+    });
+  }, []);
 
   return { theme, setTheme, mode, setMode, toggleMode };
 }

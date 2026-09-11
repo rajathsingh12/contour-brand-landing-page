@@ -66,6 +66,15 @@
   --c-badge-text: #e8a0b8;
 }
 
+[data-mode="dark"] img {
+  border: 1px solid var(--c-border);
+}
+
+[data-mode="dark"][data-theme="burgundy"] {
+  --c-accent-light: #2e2228;
+  --c-badge-text: #e8a0b8;
+}
+
 [data-mode="dark"][data-theme="sage"] {
   --c-accent-light: #222e20;
   --c-badge-text: #8fbf82;
