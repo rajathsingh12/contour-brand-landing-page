@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ProductCard } from "@/components/ProductCard";
 import { SilhouetteBadge } from "@/components/SilhouetteBadge";
 import { products } from "@/data/products";
@@ -97,10 +98,14 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-c-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-[4/5] rounded-lg bg-gradient-to-br from-c-badge-bg to-c-accent-light flex items-end p-8">
-              <span className="text-xs uppercase tracking-widest text-c-text-secondary">
-                Editorial photography
-              </span>
+            <div className="aspect-[4/5] rounded-lg overflow-hidden relative">
+              <Image
+                src="/images/editorial/editorial-main.jpg"
+                alt="Fashion editorial — woman in a fitted dress"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <div>
               <h2 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight">
@@ -188,11 +193,15 @@ export default function Home() {
             XL&ndash;6XL.
           </p>
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="aspect-[3/4] rounded-lg bg-gradient-to-br from-c-badge-bg to-c-accent-light/50"
-              />
+            {[
+              { src: "/images/editorial/real-1.jpg", alt: "Casual everyday look" },
+              { src: "/images/editorial/real-2.jpg", alt: "Professional workwear" },
+              { src: "/images/editorial/real-3.jpg", alt: "Evening party outfit" },
+              { src: "/images/editorial/real-4.jpg", alt: "Relaxed weekend style" },
+            ].map((img) => (
+              <div key={img.src} className="aspect-[3/4] rounded-lg overflow-hidden relative">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+              </div>
             ))}
           </div>
         </div>
@@ -232,11 +241,15 @@ export default function Home() {
             Follow us for styling ideas and new drops.
           </p>
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="aspect-square rounded-lg bg-gradient-to-br from-c-badge-bg to-c-accent-light/30"
-              />
+            {[
+              { src: "/images/social/insta-1.jpg", alt: "Fashion styling" },
+              { src: "/images/social/insta-2.jpg", alt: "Street style" },
+              { src: "/images/social/insta-3.jpg", alt: "Accessories" },
+              { src: "/images/social/insta-4.jpg", alt: "Lifestyle" },
+            ].map((img) => (
+              <div key={img.src} className="aspect-square rounded-lg overflow-hidden relative">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+              </div>
             ))}
           </div>
         </div>
