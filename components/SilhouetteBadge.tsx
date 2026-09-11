@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { FitObjective } from "@/lib/types";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const LABELS: Record<FitObjective, string> = {
   smooth: "SMOOTH",
@@ -26,14 +30,42 @@ export function SilhouetteBadge({
   const className = `${BASE_CLASS} ${sizeClass}${
     href ? " hover:bg-c-accent-light transition-colors" : ""
   }`;
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    if (href) {
+      return (
+        <Link href={href} className={className}>
+          {LABELS[tag]}
+        </Link>
+      );
+    }
+    return <span className={className}>{LABELS[tag]}</span>;
+  }
 
   if (href) {
     return (
-      <Link href={href} className={className}>
-        {LABELS[tag]}
-      </Link>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        className="inline-block"
+      >
+        <Link href={href} className={className}>
+          {LABELS[tag]}
+        </Link>
+      </motion.div>
     );
   }
 
-  return <span className={className}>{LABELS[tag]}</span>;
+  return (
+    <motion.span
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {LABELS[tag]}
+    </motion.span>
+  );
 }

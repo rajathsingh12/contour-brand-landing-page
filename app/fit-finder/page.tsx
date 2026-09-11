@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Size, BodyShape, Concern, FitObjective, FitPreference } from "@/lib/types";
 import type { UserPreferences } from "@/lib/fit-engine";
 import { rankProducts } from "@/lib/fit-engine";
@@ -8,6 +9,8 @@ import { generateProfileName } from "@/data/fitProfiles";
 import { bodyShapes as bodyShapesData } from "@/data/bodyShapes";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { fitFinderStep, fitFinderCard, fadeInUp, cardGrid } from "@/lib/animations";
 
 const SIZES: Size[] = ["XL", "2XL", "3XL", "4XL", "5XL", "6XL"];
 
@@ -67,12 +70,38 @@ function SelectCard({
   selected: boolean;
   onClick: () => void;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return (
+      <button
+        type="button"
+        aria-pressed={selected}
+        onClick={onClick}
+        className={`text-left px-5 py-4 rounded-lg border transition-all ${
+          selected
+            ? "border-c-accent bg-c-accent-light ring-1 ring-c-accent"
+            : "border-c-border bg-c-surface hover:border-c-accent/40"
+        }`}
+      >
+        <span className="block font-heading text-base font-semibold">{label}</span>
+        {description && (
+          <span className="block mt-1 text-sm text-c-text-secondary">{description}</span>
+        )}
+      </button>
+    );
+  }
+
   return (
-    <button
+    <motion.button
       type="button"
       aria-pressed={selected}
       onClick={onClick}
-      className={`text-left px-5 py-4 rounded-lg border transition-all ${
+      initial="unselected"
+      animate={selected ? "selected" : "unselected"}
+      whileHover="hover"
+      variants={fitFinderCard}
+      className={`text-left px-5 py-4 rounded-lg border transition-colors ${
         selected
           ? "border-c-accent bg-c-accent-light ring-1 ring-c-accent"
           : "border-c-border bg-c-surface hover:border-c-accent/40"
@@ -82,7 +111,7 @@ function SelectCard({
       {description && (
         <span className="block mt-1 text-sm text-c-text-secondary">{description}</span>
       )}
-    </button>
+    </motion.button>
   );
 }
 
@@ -134,32 +163,53 @@ export default function FitFinderPage() {
   // Step 6 = results
   if (step === 6 && prefs) {
     return (
-      <section className="max-w-3xl mx-auto px-4 py-16 sm:py-24">
-        <p className="text-sm uppercase tracking-widest text-c-accent mb-3">Your Fit Profile</p>
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-4">{profileName}</h1>
-        <p className="text-lg text-c-text-secondary mb-10">
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="max-w-3xl mx-auto px-4 py-16 sm:py-24"
+      >
+        <motion.p variants={fadeInUp} className="text-sm uppercase tracking-widest text-c-accent mb-3">
+          Your Fit Profile
+        </motion.p>
+        <motion.h1 variants={fadeInUp} className="font-heading text-4xl sm:text-5xl font-bold mb-4">
+          {profileName}
+        </motion.h1>
+        <motion.p variants={fadeInUp} className="text-lg text-c-text-secondary mb-10">
           You prefer: {preferenceSummary}
-        </p>
+        </motion.p>
 
-        <h2 className="font-heading text-2xl font-semibold mb-6">Recommended For You</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+        <motion.h2 variants={fadeInUp} className="font-heading text-2xl font-semibold mb-6">
+          Recommended For You
+        </motion.h2>
+        <motion.div
+          variants={cardGrid}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12"
+        >
           {results.map(({ product }) => (
-            <ProductCard key={product.id} product={product} />
+            <motion.div key={product.id} variants={fadeInUp}>
+              <ProductCard product={product} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <button
+        <motion.button
+          variants={fadeInUp}
           type="button"
           onClick={reset}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           className="inline-flex items-center px-8 py-3 border border-c-accent text-c-accent text-sm uppercase tracking-wider rounded-full hover:bg-c-accent-light transition-colors"
         >
           Retake
-        </button>
+        </motion.button>
 
-        <p className="mt-10 text-xs text-c-text-secondary">
+        <motion.p variants={fadeInUp} className="mt-10 text-xs text-c-text-secondary">
           Your fit profile is a styling recommendation based on your preferences and proportions.
-        </p>
-      </section>
+        </motion.p>
+      </motion.section>
     );
   }
 
@@ -174,93 +224,122 @@ export default function FitFinderPage() {
 
   return (
     <section className="max-w-2xl mx-auto px-4 py-16 sm:py-24">
-      <p className="text-sm uppercase tracking-widest text-c-accent mb-2">
+      <motion.p
+        key={`step-${step}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-sm uppercase tracking-widest text-c-accent mb-2"
+      >
         Step {step} of 5
-      </p>
-      <h1 className="font-heading text-3xl sm:text-4xl font-bold mb-8">
+      </motion.p>
+      <motion.h1
+        key={`title-${step}`}
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="font-heading text-3xl sm:text-4xl font-bold mb-8"
+      >
         {STEP_TITLES[step]}
-      </h1>
+      </motion.h1>
 
-      {step === 1 && (
-        <div className="grid grid-cols-3 gap-3">
-          {SIZES.map((s) => (
-            <SelectCard key={s} label={s} selected={size === s} onClick={() => setSize(s)} />
-          ))}
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={fitFinderStep}
+        >
+          {step === 1 && (
+            <div className="grid grid-cols-3 gap-3">
+              {SIZES.map((s) => (
+                <SelectCard key={s} label={s} selected={size === s} onClick={() => setSize(s)} />
+              ))}
+            </div>
+          )}
 
-      {step === 2 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {ROOM_OPTIONS.map((o) => (
-            <SelectCard
-              key={o.value}
-              label={o.label}
-              selected={concerns.includes(o.value)}
-              onClick={() => setConcerns(toggleMulti(concerns, o.value))}
-            />
-          ))}
-        </div>
-      )}
+          {step === 2 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {ROOM_OPTIONS.map((o) => (
+                <SelectCard
+                  key={o.value}
+                  label={o.label}
+                  selected={concerns.includes(o.value)}
+                  onClick={() => setConcerns(toggleMulti(concerns, o.value))}
+                />
+              ))}
+            </div>
+          )}
 
-      {step === 3 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {GOAL_OPTIONS.map((o) => (
-            <SelectCard
-              key={o.value}
-              label={o.label}
-              selected={goals.includes(o.value)}
-              onClick={() => setGoals(toggleMulti(goals, o.value))}
-            />
-          ))}
-        </div>
-      )}
+          {step === 3 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {GOAL_OPTIONS.map((o) => (
+                <SelectCard
+                  key={o.value}
+                  label={o.label}
+                  selected={goals.includes(o.value)}
+                  onClick={() => setGoals(toggleMulti(goals, o.value))}
+                />
+              ))}
+            </div>
+          )}
 
-      {step === 4 && (
-        <div className="grid grid-cols-2 gap-3">
-          {FIT_OPTIONS.map((o) => (
-            <SelectCard
-              key={o.value}
-              label={o.label}
-              selected={fitPref === o.value}
-              onClick={() => setFitPref(o.value)}
-            />
-          ))}
-        </div>
-      )}
+          {step === 4 && (
+            <div className="grid grid-cols-2 gap-3">
+              {FIT_OPTIONS.map((o) => (
+                <SelectCard
+                  key={o.value}
+                  label={o.label}
+                  selected={fitPref === o.value}
+                  onClick={() => setFitPref(o.value)}
+                />
+              ))}
+            </div>
+          )}
 
-      {step === 5 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {SHAPE_OPTIONS.map((o) => (
-            <SelectCard
-              key={o.value}
-              label={o.label}
-              description={o.description}
-              selected={bodyShape === o.value}
-              onClick={() => setBodyShape(o.value)}
-            />
-          ))}
-        </div>
-      )}
+          {step === 5 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {SHAPE_OPTIONS.map((o) => (
+                <SelectCard
+                  key={o.value}
+                  label={o.label}
+                  description={o.description}
+                  selected={bodyShape === o.value}
+                  onClick={() => setBodyShape(o.value)}
+                />
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="mt-10 flex items-center gap-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mt-10 flex items-center gap-4"
+      >
         {step > 1 && (
-          <button
+          <motion.button
             type="button"
             onClick={() => setStep(step - 1)}
+            whileHover={{ x: -2 }}
             className="text-sm text-c-text-secondary hover:text-c-text transition-colors"
           >
             &larr; Back
-          </button>
+          </motion.button>
         )}
-        <button
+        <motion.button
           type="button"
           onClick={advance}
           disabled={!canAdvance}
+          whileHover={{ scale: canAdvance ? 1.02 : 1 }}
+          whileTap={{ scale: canAdvance ? 0.98 : 1 }}
           className="inline-flex items-center px-8 py-3 bg-c-accent text-white text-sm uppercase tracking-wider rounded-full hover:bg-c-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {step === 5 ? "See My Results" : "Continue"}
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 }
