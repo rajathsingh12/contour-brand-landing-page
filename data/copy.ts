@@ -98,6 +98,21 @@ export const copy = {
     },
   },
 
+  // Quiet, on-brand fallbacks for a missing route/dress (notFound) and an
+  // unexpected runtime error (error boundary). Never blanks a route.
+  notFound: {
+    heading: "This page couldn't be found.",
+    body: "The page you're looking for may have moved, or the dress is no longer part of the collection.",
+    ctaHome: "Return home",
+    ctaShop: "Explore the collection",
+  },
+  error: {
+    heading: "Something went wrong.",
+    body: "We hit an unexpected snag loading this page. Please try again in a moment.",
+    retry: "Try again",
+    ctaHome: "Return home",
+  },
+
   // Product detail page — shared, dress-agnostic labels and info blocks. The
   // per-dress fields (name, whyItWorks, fabric, care, modelSize) come from data/dresses.ts.
   product: {
