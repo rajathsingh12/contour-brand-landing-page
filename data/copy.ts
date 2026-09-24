@@ -55,6 +55,10 @@ export const copy = {
     fitFinder: {
       headline: "FIND YOUR CONTOUR",
       subheading: "Tell us what you'd like your dress to fit better.",
+      concernsLegend: "Select what you'd like your dress to fit better",
+      prompt: "Select a fit concern to see the dresses designed around it.",
+      resultsHeading: "Designed around you",
+      empty: "No dresses match that combination just yet.",
     },
     // Section 7
     sizePrice: {
