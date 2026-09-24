@@ -107,13 +107,9 @@ export default function DesignSystemDemo() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <Text size="sm" variant="secondary" className="mb-2">
-              Portrait (broken image)
+              Portrait (no image)
             </Text>
-            <ImageFrame
-              src="/images/nonexistent.jpg"
-              alt="Missing image test"
-              aspectRatio="portrait"
-            />
+            <ImageFrame src="" alt="No image placeholder" aspectRatio="portrait" />
           </div>
           <div>
             <Text size="sm" variant="secondary" className="mb-2">
@@ -123,13 +119,9 @@ export default function DesignSystemDemo() {
           </div>
           <div>
             <Text size="sm" variant="secondary" className="mb-2">
-              Landscape
+              Landscape (no image)
             </Text>
-            <ImageFrame
-              src="/placeholder.jpg"
-              alt="Placeholder"
-              aspectRatio="landscape"
-            />
+            <ImageFrame src="" alt="No image placeholder" aspectRatio="landscape" />
           </div>
         </div>
       </section>
