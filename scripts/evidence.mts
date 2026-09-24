@@ -81,7 +81,7 @@ async function discoverRoutes(): Promise<string[]> {
 // Concrete paths for dynamic routes the filesystem walk skips. One representative
 // per dynamic route is enough for the gate.
 // ponytail: hardcoded representative; add a line when a new dynamic route ships.
-const EXTRA_ROUTES = ["/shop-by-fit/arms"];
+const EXTRA_ROUTES = ["/shop-by-fit/arms", "/products/a1"];
 
 function routeSlug(route: string): string {
   return route === "/" ? "home" : route.replace(/^\//, "");

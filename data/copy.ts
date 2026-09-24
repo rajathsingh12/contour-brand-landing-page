@@ -93,4 +93,33 @@ export const copy = {
       methods: "Prepaid and Cash on Delivery.",
     },
   },
+
+  // Product detail page — shared, dress-agnostic labels and info blocks. The
+  // per-dress fields (name, whyItWorks, fabric, care, modelSize) come from data/dresses.ts.
+  product: {
+    fitFocusLabel: "Designed for",
+    priceNote: "One price across every size, L–4XL.",
+    whyItWorksHeading: "Why It Works",
+    detailsHeading: "Details",
+    fabricLabel: "Fabric",
+    careLabel: "Care",
+    modelLabel: "Model wears",
+    sizeLabel: "Select your size",
+    sizeGuideLink: "View size guide",
+    recommendedHeading: "You may also like",
+    info: [
+      { heading: "Shipping", body: "Dispatched within 2–3 working days, with free shipping across India on every order." },
+      { heading: "Returns", body: "Easy 7-day returns and exchanges — the dress should be unworn with its tags intact." },
+      { heading: "Payment", body: "Pay online in advance (prepaid) or choose Cash on Delivery at your door." },
+    ],
+    reviews: {
+      heading: "Reviews",
+      rating: 4.8,
+      items: [
+        { quote: "The fit is genuinely considered — it skims exactly where I'd want it to and still feels easy to move in.", author: "Aditi R." },
+        { quote: "Beautiful fabric and the length is just right. I've reached for it every week since it arrived.", author: "Meera S." },
+        { quote: "Elegant, comfortable, and it holds its shape all day. Ordered a second in another colour.", author: "Priya N." },
+      ],
+    },
+  },
 };
