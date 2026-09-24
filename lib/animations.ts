@@ -6,11 +6,11 @@
 import { Variants, Transition } from "framer-motion";
 
 // ── Duration & Easing ──
+// All durations ≤ 400ms per the design-system motion constraint (ticket 02).
 export const duration = {
   fast: 0.2,
   normal: 0.3,
-  slow: 0.5,
-  slower: 0.8,
+  slow: 0.4,
 };
 
 export const easing = {
@@ -235,7 +235,7 @@ export const sectionReveal: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: duration.slower,
+      duration: duration.slow,
       ease: easing.easeOut,
     },
   },
