@@ -8,6 +8,8 @@ export interface ImageFrameProps {
   alt: string;
   aspectRatio?: "square" | "portrait" | "landscape";
   className?: string;
+  sizes?: string;
+  priority?: boolean;
 }
 
 export function ImageFrame({
@@ -15,6 +17,8 @@ export function ImageFrame({
   alt,
   aspectRatio = "portrait",
   className = "",
+  sizes,
+  priority,
 }: ImageFrameProps) {
   const [hasError, setHasError] = useState(false);
 
@@ -58,6 +62,8 @@ export function ImageFrame({
         src={src}
         alt={alt}
         fill
+        sizes={sizes}
+        priority={priority}
         className="object-cover"
         onError={() => setHasError(true)}
       />

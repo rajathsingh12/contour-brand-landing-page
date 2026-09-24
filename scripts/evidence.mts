@@ -71,11 +71,17 @@ async function discoverRoutes(): Promise<string[]> {
       return dir === "." ? "/" : `/${dir}`;
     })
     // Skip route groups (…), parallel slots @…, and dynamic segments […] — we
-    // can't enumerate params for dynamic routes, and none exist yet.
+    // can't enumerate params for dynamic routes, so representative concrete
+    // paths are added explicitly via EXTRA_ROUTES below.
     .filter((r) => !r.split("/").some((seg) => seg.startsWith("(") || seg.startsWith("@") || seg.includes("[")))
     .sort();
-  return Array.from(new Set(routes));
+  return Array.from(new Set([...routes, ...EXTRA_ROUTES]));
 }
+
+// Concrete paths for dynamic routes the filesystem walk skips. One representative
+// per dynamic route is enough for the gate.
+// ponytail: hardcoded representative; add a line when a new dynamic route ships.
+const EXTRA_ROUTES = ["/shop-by-fit/arms"];
 
 function routeSlug(route: string): string {
   return route === "/" ? "home" : route.replace(/^\//, "");
