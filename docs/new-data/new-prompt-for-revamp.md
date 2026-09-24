@@ -1,0 +1,104 @@
+# Goal
+
+Build the complete **CONTOUR** website revamp inside the existing repository (Next.js 16.3.4 App Router, React 19.2.8, TypeScript 5, Tailwind CSS v4, framer-motion 13, Vitest 5) at this repo root. This is **not** an empty folder: the current UI under `app/`, `components/`, `data/`, and `lib/` is legacy and is to be **replaced**, not extended. The single source of truth for every word of copy, all 15 dresses, the 5 fit categories, colour direction, and page structure is `docs/new-data/website-revamp-idea.md` — read it in full before writing anything. Where it conflicts with older project files (`AGENTS.md`, `CLAUDE.md`, the "Silhouette Engineering" tag vocabulary, or XL–6XL sizing), **the revamp brief wins**: the brand is dresses-only, L–4XL, with five anatomical fit categories (ARMS, BUST, TUMMY, WAIST, HIPS & THIGHS).
+
+The quality bar is **Totême (toteme-studio.com)**-class quiet-luxury fashion ecommerce, with **The Row (therow.com)** as the typographic-restraint reference and **COS (cos.com)** as the product-page-structure reference. Reference-class means, concretely and checkably:
+1. A strict two-typeface system — a high-contrast editorial serif for display headlines, a clean grotesk sans for navigation and body — on one consistent modular scale.
+2. Generous whitespace, hairline (1px) borders, restrained UI, and **zero** rounded-corner drop-shadow cards.
+3. A disciplined palette of black + warm neutrals (ivory, charcoal, taupe, stone, cream) with muted accents only, and **zero** saturated or neon colour anywhere on any route.
+4. Full-bleed editorial photography at consistent aspect ratios, where the garment is always the visual focus.
+5. Lighthouse ≥ 95 on Performance / Accessibility / Best-Practices / SEO, with CLS < 0.05.
+6. Functional ecommerce (collection grid, PDP with size selector and "Why It Works", rule-based Fit Finder) that stays visually quiet.
+
+Never ship the failure mode: the **"generic Shopify plus-size store"** — rounded drop-shadow product cards, hot-pink or neon accents, promo and sale banners, discount badges, body-positive slogans, cramped layouts, and generic stock photography. Deliver a site whose first impression is "these are beautiful dresses" and whose second is "these are designed around my proportions" — in that order.
+
+# How to work
+
+**1. Architecture first.** Before any feature code, write `ARCHITECTURE.md` at the repo root and make it internally consistent. It must define:
+- **Folder-per-subsystem ownership** (exact list in step 3) and which folders are **core** (integrator-only).
+- **Shared data model** in `data/`: a typed `Dress` (id, name, fitCategory, price in ₹, sizes L–4XL, whyItWorks[], fabric, care, modelSize, images {front, threeQuarter, side, back, detail}) and a `FitCategory` union (`ARMS | BUST | TUMMY | WAIST | HIPS_THIGHS`), plus all 15 dresses mapped to their category, and every copy block keyed by page section. The brand lockup and hero statement are fixed verbatim from the collection-sheet header: wordmark **CONTOUR**, tagline **DRESSES DESIGNED AROUND YOU**, size line **SIZES L–4XL**, and the three-line brand statement **FIVE FIT CONCERNS. / FIFTEEN DRESSES. / DESIGNED FOR REAL BODIES.** — carry these as their own keyed copy blocks. Prices are ₹1,099 / ₹1,299 / ₹1,499 and are **identical across all sizes** — enforce this with a type or unit check, not convention. The 15 dresses — codes `A1`–`A3`, `B1`–`B3`, `T1`–`T3`, `W1`–`W3`, `H1`–`H3`, plus name, category, colour, silhouette, and card copy — are fixed by the **Canonical collection** table near the end of this document (visual sources: the full sheet `/Users/rajaths/experiments/babe-landing-page-contour-brand/docs/new-data/collection-reference.jpeg` plus one cropped per-dress reference each in `docs/new-data/new-cropped-images/`, mapped by code in that table); use each code lowercased as the dress `id`. This collection **replaces** every dress currently in `data/`.
+- **Design tokens** in `lib/design/`: the approved palette as named hex tokens (map every colour family in the brief); the type scale (editorial serif display + grotesk sans body via `next/font/google`, self-hosted and preloaded — default pair **Fraunces** display + **Inter** body; the integrator may swap to another open-license pair only if it better matches Totême); the spacing scale; and a motion spec (durations ≤ 400ms, ease-out, `prefers-reduced-motion` honoured; no parallax, no autoplay carousels, no flashy animation).
+- **Per-module public API**: the exact components/functions each folder exports, so builders wire against interfaces, not internals.
+- **Determinism policy**: the Fit Finder is a **pure, deterministic, rule-based scoring function** `recommend(concerns: FitCategory[]): Dress[]` — score by category match, stable-sort by score then price, no randomness, no network, no model. It is **never** described as "AI" in code or copy.
+- **Performance budget (hard numbers)**: Lighthouse mobile prod-build Performance / Accessibility / Best-Practices / SEO all ≥ 95; LCP < 2.0s desktop @1440, < 2.5s mobile @390 (throttled); CLS < 0.05; TBT < 150ms; per-route client JS < 200KB gzip (React Server Components by default; client components only for nav, size selector, Fit Finder, and cart drawer); all imagery through `next/image` (AVIF/WebP, explicit dimensions).
+- **Asset / licensing / photography policy**: the **Canonical collection** table below is the authoritative visual target. Two in-repo sources ground it: the full sheet `/Users/rajaths/experiments/babe-landing-page-contour-brand/docs/new-data/collection-reference.jpeg` for collection-wide consistency, and one cropped per-dress reference in `docs/new-data/new-cropped-images/` (mapped by code in the table) that fixes that dress's exact colour, silhouette, neckline, and sleeve. **Replace all** current images, models, and dress data in `public/` and `data/` with this collection — the existing assets are legacy. No production multi-view photography exists, so for each dress generate or source the front / 3-4 / side / back / detail views to match its own cropped reference — same colour, silhouette, and model treatment — at the correct aspect ratios, and record source + license per file in `public/images/CREDITS.json` (open-license only — Unsplash/Pexels or generated; never hotlink, never ship competitor or brand imagery). Product images are 3:4 portrait; hero is 16:9 desktop / 4:5 mobile; identical warm-neutral studio background throughout. Models must show realistic, undistorted proportions — never artificially slim, never exaggerate.
+- **Route map (App Router)**: `/` (8 homepage sections), `/shop` (all 15), `/shop-by-fit` (5 category cards) → `/shop-by-fit/[category]`, `/fit-finder`, `/our-approach`, `/size-guide`, `/about`, `/products/[id]`.
+- **Failure isolation**: a broken image, missing dress, or thrown component degrades to a quiet placeholder — it never blanks a route or breaks the build.
+
+**2. Build the verification loop before the product.** Build a Playwright-based evidence harness under `scripts/evidence/`, runnable as `npm run evidence`, **before any page is styled**. It must:
+- Build and boot the app in prod mode (`next build && next start`) and wait for each route to reach network-idle.
+- Visit **every route** at **1440px (desktop)** and **390px (mobile)**, capturing full-page PNGs plus per-section PNGs to `docs/evidence/<route>/<breakpoint>.png`.
+- Run **Lighthouse** per route → `docs/evidence/<route>/lighthouse.json`; capture all **console** errors/warnings → `docs/evidence/<route>/console.log`; run **axe-core** → `docs/evidence/<route>/a11y.json`.
+- Run a **colour-palette auditor**: crawl computed `color` / `background` / `border` / `fill` across every route, convert to HSL, and **fail** on any non-neutral colour with saturation > 40% or any colour outside tolerance of a palette token → `docs/evidence/color-audit.json`. This is the machine check for the "no neon / no saturated colour" rule.
+- Provide a **per-module showcase route** (`/_showcase/[module]`, non-production) that renders one module in isolation with real and edge-case data (longest dress name, Fit Finder with all five concerns selected, empty result set) so the critic can gather focused evidence.
+- Provide a **reference-capture mode** that screenshots Totême / The Row / COS into `docs/evidence/reference/` for side-by-side comparison. Reference shots stay in `docs/evidence/` and are **never** copied into `public/` or shipped.
+- **Grounded-verification rule**: no agent may report a module done because it compiles or its tests pass. Done means the agent has opened the actual screenshots and the Lighthouse / axe / colour logs for that module and all are clean against the budget.
+
+**3. Fan out.** One **builder agent per module**, each owning exactly one folder and touching no other. Waves ordered by dependency:
+- **Wave 1 — foundation (core):** the **integrator** writes `ARCHITECTURE.md` and the evidence harness; then core folders are built — `lib/design/` (tokens, fonts, Tailwind v4 `@theme`, motion), `data/` (typed model + all 15 dresses + every copy block), `components/ui/` (shared primitives: `Button`, `Heading`/`Text`, `Container`, `Divider`, `Price`, `SizeSelector`, `ImageFrame`).
+- **Wave 2 — builders in parallel (each owns one folder, all depend only on Wave 1):**
+  - `components/layout/` — Header/Nav (CONTOUR · SHOP · SHOP BY FIT · FIT FINDER · OUR APPROACH · SIZE GUIDE · ABOUT, plus search / account / cart affordances; cart is a quiet drawer, no backend claims) + Footer (payment methods — prepaid and COD — stated unobtrusively).
+  - `components/home/` — all 8 sections in brief order: Hero (campaign headline "SCULPTED BY DESIGN." over the brand lockup **CONTOUR · DRESSES DESIGNED AROUND YOU · SIZES L–4XL**, with the brand statement **FIVE FIT CONCERNS. / FIFTEEN DRESSES. / DESIGNED FOR REAL BODIES.** shown verbatim), Dresses Designed Differently (`L–4XL · INDIA-FIRST · SAME PRICE ACROSS SIZES`), Shop by Fit (5 cards), The Contour Collection (15-dress editorial grid), Not Sized Up Thought Through, Fit Finder ("FIND YOUR CONTOUR"), Your Size Your Price, Why Contour (About).
+  - `components/product/` — product card + collection grid + PDP template rendering **every** field the brief requires: name, price, L/XL/2XL/3XL/4XL selector, fit focus, Why It Works, fabric, care, model size, size-guide link, shipping + return + payment (prepaid/COD) info, reviews, recommended dresses.
+  - `lib/fit-finder/` + `components/fit-finder/` — the pure scoring engine (unit-tested: fixed input → fixed output) and its UI.
+  - `components/shop/` — `/shop` (all 15) and `/shop-by-fit` (5 category cards) → `/shop-by-fit/[category]` filtered listings.
+  - `components/editorial/` — About, Our Approach, and Size Guide page bodies.
+- **Wave 3 — integration:** the integrator wires routes under `app/`, resolves every nav link, fixes the seams between modules, and runs the full `npm run evidence` sweep.
+- **The integrator is the only agent allowed to touch core** (`lib/design/`, `data/`, `components/ui/`, `app/layout.tsx`, global CSS, Tailwind theme). A builder needing a core change files a request to the integrator; it does not edit core itself.
+
+**4. Gauntlet every module.** After a module reports done, a **critic agent — a brutal fashion creative director paired with a senior front-end reviewer — grades it. The critic writes no code, shares no context or sunk cost with the builder, and gathers its own evidence: it runs the harness against the module's showcase route at both breakpoints and at the edge-case states, opens the screenshots and the Lighthouse / axe / colour logs itself, and compares against the reference shots in `docs/evidence/reference/`. It checks contract conformance (matches the module's declared API and the brief), zero console errors, zero axe violations, performance within budget, and a colour-audit pass. It then scores **0–10** against these anchors:
+- **10** — indistinguishable from Totême: a fashion director could not tell this is not a top-tier European quiet-luxury label.
+- **8.5 (PASS)** — reference-class with minor nits: typography, spacing, palette, and photography treatment are all disciplined; only small spacing or hierarchy refinements remain.
+- **7** — good, competent independent work, but clearly a notch below the reference (slightly generic, minor palette or hierarchy inconsistencies).
+- **5 (FAILURE MODE)** — the "generic Shopify plus-size store": rounded shadow cards, saturated accents, promo/sale styling, body-positive slogans, cluttered layout, stock-photo feel.
+
+The pass threshold is **≥ 8.5 and** a clean cleanliness gate (zero console errors, zero axe violations, Lighthouse ≥ 95 in all four categories, colour-audit pass). The critic returns a **ranked** list of concrete issues (worst first, each naming the file and the fix) to the builder. Bounded to **3 rounds** per module; if a module still fails after round 3, record the blockers in `docs/STATUS.json` and escalate rather than loosening the bar.
+
+**5. Final gate.** When every module passes, a **whole-site critic** runs the full route sweep and checks cross-page consistency (one type scale, one palette, one spacing rhythm, working navigation, no orphan routes). Then a **blind A/B judgment**: for the **hero**, the **collection grid**, and a **PDP**, place our screenshot beside the corresponding Totême screenshot with **labels hidden and left/right order shuffled**, and force a reasoned pick per surface. The final gate passes only when every module is ≥ 8.5 **and** our surface wins or ties on **≥ 2 of the 3** blind comparisons, with written reasons recorded.
+
+**6. /loop until every critic passes.** Persist per-module scores, round counts, pass flags, and ranked open issues to `docs/STATUS.json`, along with the final-gate A/B results. Every iteration resumes from the **lowest-scoring not-yet-passing module**, never from scratch. Terminate only when all module critics pass and the final gate passes.
+
+# Canonical collection (replaces all current dresses, models, and images)
+
+The 15 dresses ship with two in-repo visual references. The full sheet `/Users/rajaths/experiments/babe-landing-page-contour-brand/docs/new-data/collection-reference.jpeg` is the collection-wide consistency reference (overall model casting, lighting, framing). Per dress, one **cropped reference** lives in `docs/new-data/new-cropped-images/` — the exact file is in the **Reference crop** column below, and it is the authoritative colour, silhouette, neckline, sleeve, and model target for that specific dress. Together they **replace** every dress, model, and image currently in `data/` and `public/`. Use each code below lowercased (e.g. `a1`) as the dress `id`; the crop named for that code drives that dress's generated imagery. Every colour listed already sits inside the approved palette — the colour auditor must still pass.
+
+Category taglines (use verbatim on the Shop by Fit cards):
+- **ARMS** — Elegant arm coverage for fuller upper arms.
+- **BUST** — Considered necklines and fit for fuller busts.
+- **TUMMY** — Clean, comfortable midsection.
+- **WAIST** — Effortless waist definition without squeezing.
+- **HIPS & THIGHS** — Comfortable lower-body ease where you need it.
+
+| Code | Dress | Fit | Colour | Silhouette & detail | Card copy | Reference crop (`docs/new-data/new-cropped-images/`) |
+|------|-------|-----|--------|---------------------|-----------|------------------------------------------------------|
+| A1 | The Elongated Sleeve | ARMS | Black | Square neck, structured ¾ blouson sleeves, A-line | Structured ¾ sleeves. Timeless silhouette. | `A1-arms-the-elongated-sleeve.png` |
+| A2 | The Cape Sleeve | ARMS | Burgundy / wine | Square neck, draped cape / flutter sleeve | Effortless coverage. Modern elegance. | `A2-arms-the-cape-sleeve.png` |
+| A3 | The Sculpt Sleeve | ARMS | Charcoal grey | Square neck, ¾ puff sleeves, defined waist | Defined shape. Considered volume. | `A3-arms-the-sculpt-sleeve.png` |
+| B1 | The Wrap Neck | BUST | Black | Long-sleeve wrap V-neck | Supportive fit. Beautiful shape. | `B1-bust-the-wrap-neck.png` |
+| B2 | The Square Neck | BUST | Taupe / stone | Sleeveless square neck, tailored | Elegant neckline. Balanced proportions. | `B2-bust-the-square-neck.png` |
+| B3 | The V-Neck Panel | BUST | Black | Long-sleeve V-neck wrap panel | Flattering lines. Comfortable fit. | `B3-bust-the-v-neck-panel.png` |
+| T1 | The Diagonal Drape | TUMMY | Mocha / taupe-brown | Sleeveless V-neck, diagonal drape wrap | Strategic draping. Smoother line. | `T1-tummy-the-diagonal-drape.png` |
+| T2 | The Panelled Midi | TUMMY | Black | Short-sleeve square neck, panelled midi | Thoughtful seams. Flattering fit. | `T2-tummy-the-panelled-midi.png` |
+| T3 | The Raised-Waist | TUMMY | Soft olive | Sleeveless square neck, raised-waist A-line | Comfortable midsection. Fluid silhouette. | `T3-tummy-the-raised-waist.png` |
+| W1 | The Tailored Waist | WAIST | Black | Sleeveless square neck, tie belt | Defined shape. All-day comfort. | `W1-waist-the-tailored-waist.png` |
+| W2 | The Contoured Seam | WAIST | Espresso / chocolate | Long-sleeve wrap V-neck with tie | Natural definition. Refined structure. | `W2-waist-the-contoured-seam.png` |
+| W3 | The Belt-Free Wrap | WAIST | Black | Short-sleeve V-neck wrap | Shape without restriction. Effortless style. | `W3-waist-the-belt-free-wrap.png` |
+| H1 | The Structured A-Line | HIPS & THIGHS | Black | Short-sleeve square neck, full A-line | Room to move. Beautiful drape. | `H1-hips-and-thighs-the-structured-a-line.png` |
+| H2 | The Panelled Flare | HIPS & THIGHS | Dusty rose / mauve | Flutter-sleeve V-neck, panelled flare | Considered panels. Elegant movement. | `H2-hips-and-thighs-the-panelled-flare.png` |
+| H3 | The Fluid Column | HIPS & THIGHS | Deep navy | Short-sleeve square neck, column with side drape | Comfortable ease. Elongated silhouette. | `H3-hips-and-thighs-the-fluid-column.png` |
+
+Model & photography direction (consistent across all 15): one realistic plus-size woman per dress with natural, undistorted proportions, dark wavy hair, gold hoop earrings, minimal jewellery, natural polished makeup, warm-neutral studio backdrop, soft directional side light, three-quarter standing crop with the garment as the focus, identical framing and background treatment across the collection — exactly as shown in the cropped references. The module and final critics compare each generated dress against its own crop in `docs/new-data/new-cropped-images/` for garment colour and silhouette fidelity, and against `/Users/rajaths/experiments/babe-landing-page-contour-brand/docs/new-data/collection-reference.jpeg` for cross-collection photographic consistency.
+
+# Rules
+- **Never inflate scores.** Report real numbers, failed rounds, and what is still missing. A generous self-review is worthless — the critic's separation from the builder is the whole point.
+- **Never edit another module's folder.** Core changes (`lib/design/`, `data/`, `components/ui/`, `app/layout.tsx`, global CSS, Tailwind theme) go through the integrator only, so parallel builders never collide on shared state.
+- **Keep the prod build green and every route rendering at all times** — the harness and every other agent depend on `next build` succeeding and each route loading; a failure isolates to a placeholder, it does not break the build.
+- **Never introduce a colour outside the approved token palette, and never a saturated or neon colour** — the colour auditor will fail the build; this is the single most load-bearing brand rule.
+- **Map every dress to its own cropped reference.** Each dress `id` (`a1`–`h3`) has exactly one authoritative crop in `docs/new-data/new-cropped-images/` — generate or source that dress's imagery to match its own crop's colour and silhouette, never another dress's; the module critic scores each dress against its specific crop, not just the full sheet.
+- **Never build a rounded drop-shadow card, promo/sale banner, discount badge, countdown, or body-positive slogan** — these *are* the failure mode, not stylistic choices. (The sanctioned brand statement **FIVE FIT CONCERNS. / FIFTEEN DRESSES. / DESIGNED FOR REAL BODIES.** is approved verbatim copy, not a slogan violation.)
+- **The Fit Finder is deterministic rule-based scoring — never call it "AI"** anywhere in code, comments, or copy.
+- **Dresses only.** Never scaffold tops, trousers, skirts, co-ords, ethnicwear, or accessories, even as placeholders.
+- **Never use the phrase "plus-size" in customer-facing copy** — use proportions, fit, silhouette, construction, ease, coverage, definition, and design instead. (Internal notes may use it.)
+- **Do not ask me questions.** Make routine decisions yourself, state your assumptions in `ARCHITECTURE.md`, and keep going.
+
+Start now.
