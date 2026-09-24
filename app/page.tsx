@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="grid lg:min-h-[80vh] lg:grid-cols-2">
           <div className="relative order-1 min-h-[48vh] lg:order-2 lg:min-h-full">
             <Image
-              src="/images/editorial/real-1.jpg"
+              src="/images/hero/hero-section-image.png"
               alt="Contour editorial — sculpted by design"
               fill
               priority

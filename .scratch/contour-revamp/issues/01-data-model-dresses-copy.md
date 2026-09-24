@@ -4,7 +4,7 @@
 
 **Blocked by:** None — can start immediately.
 
-**Status:** ready-for-agent
+**Status:** done
 
 **Hard constraints:** Dresses only — never model tops, skirts, co-ords, ethnicwear, or accessories, even as placeholders. Sizes exactly L, XL, 2XL, 3XL, 4XL. Exactly five fit categories: ARMS, BUST, TUMMY, WAIST, HIPS & THIGHS (union `ARMS | BUST | TUMMY | WAIST | HIPS_THIGHS`). Prices ₹1,099 / ₹1,299 / ₹1,499, identical across all sizes — enforced by a type or unit check, not convention. No "plus-size" in any customer-facing copy string. Nothing fit-finder-related is ever called "AI".
 

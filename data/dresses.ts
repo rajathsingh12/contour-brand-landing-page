@@ -286,7 +286,7 @@ export const dresses: Dress[] = [
     fabric: "Structured cotton-blend twill",
     care: CARE,
     modelSize: "2XL",
-    image: "/images/dresses/h1.jpeg",
+    image: "/images/dresses/h1.png",
   },
   {
     id: "h2",
@@ -306,7 +306,7 @@ export const dresses: Dress[] = [
     fabric: "Fluid georgette-lined crepe",
     care: CARE,
     modelSize: "XL",
-    image: "/images/dresses/h2.jpeg",
+    image: "/images/dresses/h2.png",
   },
   {
     id: "h3",
@@ -326,6 +326,6 @@ export const dresses: Dress[] = [
     fabric: "Fluid matte jersey",
     care: CARE,
     modelSize: "2XL",
-    image: "/images/dresses/h3.jpeg",
+    image: "/images/dresses/h3.png",
   },
 ];
