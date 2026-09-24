@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { dresses, FIT_CATEGORIES } from "@/data/dresses";
 import { copy } from "@/data/copy";
 import { Container, Heading, Text } from "@/components/ui";
@@ -21,34 +22,46 @@ export default function HomePage() {
     <>
       {/* Section 1 — Hero */}
       <section className="bg-black text-ivory">
-        <Container className="flex min-h-[72vh] flex-col justify-center py-20 sm:py-28">
-          <p className="text-xs uppercase tracking-[0.25em] text-stone">{copy.brand.lockup}</p>
-          <Heading
-            as="h1"
-            size="3xl"
-            className="mt-6 max-w-4xl leading-[1.05] text-ivory sm:text-7xl lg:text-8xl"
-          >
-            {copy.hero.headline}
-          </Heading>
-          <div className="mt-8 space-y-1">
-            {copy.brand.statement.map((line) => (
-              <p key={line} className="font-display text-lg tracking-wide text-ivory sm:text-xl">
-                {line}
-              </p>
-            ))}
+        <div className="grid lg:min-h-[80vh] lg:grid-cols-2">
+          <div className="relative order-1 min-h-[48vh] lg:order-2 lg:min-h-full">
+            <Image
+              src="/images/editorial/real-1.jpg"
+              alt="Contour editorial — sculpted by design"
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center"
+            />
           </div>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/shop" className={`${ctaBase} bg-ivory text-black hover:bg-warm-white`}>
-              {copy.hero.ctaPrimary}
-            </Link>
-            <Link
-              href="/fit-finder"
-              className={`${ctaBase} border border-ivory text-ivory hover:bg-ivory hover:text-black`}
+          <div className="order-2 flex flex-col justify-center px-6 py-16 sm:px-10 lg:order-1 lg:px-16 lg:py-24">
+            <p className="text-xs uppercase tracking-[0.25em] text-stone">{copy.brand.lockup}</p>
+            <Heading
+              as="h1"
+              size="2xl"
+              className="mt-6 leading-[1.05] text-ivory sm:text-6xl lg:text-7xl"
             >
-              {copy.hero.ctaSecondary}
-            </Link>
+              {copy.hero.headline}
+            </Heading>
+            <div className="mt-8 space-y-1">
+              {copy.brand.statement.map((line) => (
+                <p key={line} className="font-display text-lg tracking-wide text-ivory sm:text-xl">
+                  {line}
+                </p>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/shop" className={`${ctaBase} bg-ivory text-black hover:bg-warm-white`}>
+                {copy.hero.ctaPrimary}
+              </Link>
+              <Link
+                href="/fit-finder"
+                className={`${ctaBase} border border-ivory text-ivory hover:bg-ivory hover:text-black`}
+              >
+                {copy.hero.ctaSecondary}
+              </Link>
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Section 2 — Dresses Designed Differently */}
