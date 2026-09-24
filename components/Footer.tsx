@@ -11,13 +11,13 @@ const NAV = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-c-border bg-c-surface">
+    <footer className="border-t border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           <div>
-            <p className="font-heading text-lg font-bold tracking-widest uppercase">Contour</p>
-            <p className="mt-2 text-sm text-c-text-secondary max-w-xs">
-              Fashion engineered for your shape. Without the premium price.
+            <p className="font-display text-lg font-normal tracking-widest uppercase">CONTOUR</p>
+            <p className="mt-2 text-sm text-gray-600 max-w-xs">
+              Dresses designed around your proportions.
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
@@ -25,7 +25,7 @@ export function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm text-c-text-secondary hover:text-c-accent transition-colors"
+                className="text-sm text-gray-600 hover:text-black transition-colors duration-[250ms] ease-out"
               >
                 {l.label}
               </Link>
@@ -33,11 +33,11 @@ export function Footer() {
           </nav>
           <div className="flex gap-4">
             {["Instagram", "Twitter"].map((s) => (
-              <span key={s} className="text-sm text-c-text-secondary">{s}</span>
+              <span key={s} className="text-sm text-gray-600">{s}</span>
             ))}
           </div>
         </div>
-        <p className="mt-8 text-xs text-c-text-secondary">
+        <p className="mt-8 text-xs text-gray-600">
           &copy; {new Date().getFullYear()} Contour. All rights reserved.
         </p>
       </div>

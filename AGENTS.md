@@ -1,270 +1,214 @@
 # Contour — Landing Page Project
 
-This file is the single source of truth for building the Contour brand landing page. It contains the brand spec, product system, page structure, technical decisions, and implementation roadmap extracted from `idea.txt`.
+This file is the single source of truth for building the Contour brand landing page — brand spec, product system, page structure, technical decisions, and implementation roadmap. Where anything here conflicts with older notes, the revamp brief in `docs/new-data/website-revamp-idea.md` and `docs/new-data/new-prompt-for-revamp.md` wins.
 
 ---
 
 ## Brand identity
 
-**Working name:** Contour (placeholder — final name TBD after trademark/domain check)
+**Name:** CONTOUR
 
-**Core proposition:** Fashion engineered for your shape. Without the premium price.
+**Primary brand line:** SCULPTED BY DESIGN.
 
-**Internal philosophy:** You choose the silhouette. We engineer the fit.
+**Supporting proposition:** Dresses designed around your proportions.
+
+**Core philosophy:** Not sized up. Thought through.
+
+**Brand statement (approved verbatim copy):** FIVE FIT CONCERNS. / FIFTEEN DRESSES. / DESIGNED FOR REAL BODIES.
+
+Contour is an India-first D2C fashion brand focused **exclusively on dresses**. It is built around contouring and sculpting through intelligent design — silhouette, proportion, structure, drape, seam placement, ease and construction — to create dresses that look considered and sculpted while staying comfortable and wearable. Contour is **not** primarily a "plus-size brand"; it is a sculpting-focused fashion brand that initially serves an extended-size customer through **L–4XL**.
 
 **What the brand is NOT:**
 - Not body-positive messaging ("celebrate your curves", "you deserve to feel beautiful")
-- Not clinical/medical ("hide your flaws")
+- Not clinical/medical ("hide your flaws", "hide your tummy", "fix your body")
 - Not apologetic or patronizing
+- Not led with a "plus-size" framing
 
 **What the brand IS:**
-- Control over styling and silhouette: "We don't tell you what your body should look like. We design clothes around the way you want to look and feel."
-- Confident, direct, fashionable, intelligent, slightly provocative tone
+- Beautiful fashion first, intelligent fit second
+- Confident, elegant, intelligent, fashion-forward, minimal
 
 **Voice examples:**
 
 | Avoid | Use instead |
 |---|---|
-| "You deserve to feel beautiful" | "Good clothes should fit properly" |
-| "Celebrate your curves!" | "Designed around your proportions" |
-| "Hide your flaws" | "Choose what you emphasize" |
+| "You deserve to feel beautiful" | "Dresses designed around your proportions" |
+| "Celebrate your curves!" | "Not sized up. Thought through." |
+| "Hide your tummy / fix your body" | "Considered fit, thoughtful coverage, effortless definition" |
 
 ---
 
 ## The problem being solved
 
-Most mainstream clothing is designed around standardized proportions then simply scaled up. Customers whose proportions differ experience poor fit, awkward silhouettes, limited styling, and higher prices.
-
-The market already has plus-size availability (Myntra, plusS, WOMEN PLUS). Availability alone is not the differentiator. The defensible position is: **better fit + silhouette engineering + fashion + accessible pricing**.
+Most mainstream clothing is designed around standardized proportions then simply scaled up. A fuller body isn't simply a larger version of a smaller body — yet fashion has become good at changing measurements without getting better at understanding proportions. Customers whose proportions differ experience poor fit and awkward silhouettes, especially around the arms, bust, tummy, waist, hips and thighs. The defensible position is **intelligent, sculpting-focused dress design** — silhouette, proportion, structure, drape and construction considered around the body wearing the dress — not mere size availability.
 
 ---
 
-## Four-layer differentiation
+## Differentiation
 
-1. **Extended sizing** — XL to 6XL
-2. **Proportion-aware construction** — patterns graded for bust, waist, hip, abdomen, thigh, upper arm, shoulder, torso, rise, length
-3. **Silhouette engineering** — each garment has intentional design objectives (minimize/enhance specific areas)
-4. **Fashion** — the result looks like something a fashionable 25-year-old wants to wear, not "the plus-size version"
-
----
-
-## Silhouette Engineering™ system
-
-Every garment is tagged with one or more design objectives:
-
-| Tag | Meaning |
-|---|---|
-| **SMOOTH** | Smoother visual line around midsection |
-| **DEFINE** | Creates waist definition |
-| **BALANCE** | Visually balances shoulders and hips |
-| **LENGTHEN** | Longer-looking leg/body line |
-| **ENHANCE** | Adds visual emphasis where customer wants it |
-| **SKIM** | Falls over the body rather than clings |
-| **STRUCTURE** | Provides shape rather than simply hanging |
-
-These tags serve as both a design system and a marketing/filtering system on the website.
+1. **Dresses designed around proportions** — silhouette, proportion, structure, drape, seam placement, ease and construction considered for fuller busts, arms, abdomen, waist, hips and thighs.
+2. **Five anatomical fit categories** — every dress belongs to one clear fit concern it is designed to address.
+3. **Extended sizing done right** — L–4XL, with the same price across every size.
+4. **Fashion first** — the result reads as sophisticated, timeless fashion, never "the plus-size version."
 
 ---
 
-## Body-shape system
+## Fit categories (customer-facing shopping vocabulary)
 
-Five categories used for recommendations (styling frameworks, not scientific classifications):
+Exactly **five** anatomical fit categories. These replace any prior tag system. Do **not** create a "Multi-Fit" or "Back" category, and never use vague shopping categories such as Sculpt, Balance, Lengthen or Enhance. Words like proportion, structure, drape and silhouette may be used as **design language**, never as a tag/category system.
 
-| Shape | Description | Recommended styles |
+| Category | Focus | Card tagline (verbatim) |
 |---|---|---|
-| **Apple** | More volume around midsection | A-line, V-neck, longer tops, structured shoulders, straight/wide-leg trousers, vertical details |
-| **Pear** | More volume around hips/thighs | Structured tops, interesting necklines, shoulder detailing, A-line, darker lower silhouettes |
-| **Hourglass** | Defined waist, balanced bust/hips | Wrap silhouettes, waist-defined dresses, fitted-but-structured, high-rise trousers |
-| **Rectangle** | Less natural waist definition | Belted styles, peplum, waist seams, strategic colour blocking |
-| **Inverted triangle** | Broader shoulders relative to hips | Softer shoulders, wider-leg trousers, A-line skirts, hip-enhancing silhouettes |
-
-Body shape is never a restriction. Framing: "If you're looking for X effect, these styles are likely to work well for you."
-
-Disclaimer on site: "Your fit profile is a styling recommendation based on your preferences and proportions."
+| **ARMS** | Fuller upper arms / elegant arm coverage | Elegant arm coverage for fuller upper arms. |
+| **BUST** | Fuller bust / considered neckline and bust fit | Considered necklines and fit for fuller busts. |
+| **TUMMY** | Fuller abdomen / clean, comfortable midsection | Clean, comfortable midsection. |
+| **WAIST** | Less-defined waist / effortless waist definition | Effortless waist definition without squeezing. |
+| **HIPS & THIGHS** | Fuller hips and thighs / comfortable lower-body ease | Comfortable lower-body ease where you need it. |
 
 ---
 
-## Product catalogue — Collection 01: THE SILHOUETTE EDIT
+## Product catalogue — The Contour Collection
 
-~19 SKUs at launch. These are conceptual — do not manufacture without pattern/fabric/cost validation.
+**Dresses only.** A fixed collection of **exactly 15 dresses**. Never create or display tops, trousers, jeans, skirts, co-ords, ethnicwear, accessories, or generic apparel categories — not even as placeholders. Each dress maps to exactly one fit category and has a clear reason for belonging to it. Use each code lowercased (e.g. `a1`) as the dress `id`.
 
-### Tops (5) — ₹599–₹899
-1. The Sculpt Tee
-2. The Drop Shoulder Top
-3. The Waist-Define Top
-4. The Relaxed Shirt
-5. The Drape Top
-
-### Dresses (5) — ₹999–₹1,499
-6. The Sculpt Midi
-7. The A-Line Midi
-8. The Wrap Dress
-9. The Shirt Dress
-10. The Ruched Side Dress
-
-### Trousers (4) — ₹899–₹1,299
-11. The Wide-Leg Trouser
-12. The Sculpt Trouser
-13. The Straight-Leg Trouser
-14. The High-Rise Flare
-
-### Co-ords (3) — ₹1,299–₹1,499
-15. The Sculpt Co-ord
-16. The Relaxed Co-ord
-17. The Work Co-ord
-
-### Party (2) — ₹999–₹1,499
-18. The Statement Dress
-19. The Night-Out Top
+| Code | Dress | Fit | Colour | Silhouette & detail |
+|---|---|---|---|---|
+| A1 | The Elongated Sleeve | ARMS | Black | Square neck, structured ¾ blouson sleeves, A-line |
+| A2 | The Cape Sleeve | ARMS | Burgundy / wine | Square neck, draped cape / flutter sleeve |
+| A3 | The Sculpt Sleeve | ARMS | Charcoal grey | Square neck, ¾ puff sleeves, defined waist |
+| B1 | The Wrap Neck | BUST | Black | Long-sleeve wrap V-neck |
+| B2 | The Square Neck | BUST | Taupe / stone | Sleeveless square neck, tailored |
+| B3 | The V-Neck Panel | BUST | Black | Long-sleeve V-neck wrap panel |
+| T1 | The Diagonal Drape | TUMMY | Mocha / taupe-brown | Sleeveless V-neck, diagonal drape wrap |
+| T2 | The Panelled Midi | TUMMY | Black | Short-sleeve square neck, panelled midi |
+| T3 | The Raised-Waist | TUMMY | Soft olive | Sleeveless square neck, raised-waist A-line |
+| W1 | The Tailored Waist | WAIST | Black | Sleeveless square neck, tie belt |
+| W2 | The Contoured Seam | WAIST | Espresso / chocolate | Long-sleeve wrap V-neck with tie |
+| W3 | The Belt-Free Wrap | WAIST | Black | Short-sleeve V-neck wrap |
+| H1 | The Structured A-Line | HIPS & THIGHS | Black | Short-sleeve square neck, full A-line |
+| H2 | The Panelled Flare | HIPS & THIGHS | Dusty rose / mauve | Flutter-sleeve V-neck, panelled flare |
+| H3 | The Fluid Column | HIPS & THIGHS | Deep navy | Short-sleeve square neck, column with side drape |
 
 ---
 
 ## Product data model
 
-Every product in `data/products.ts` must include:
+Every dress in `data/` conforms to a typed `Dress`:
 
 ```ts
-interface Product {
-  id: string;
+type FitCategory = "ARMS" | "BUST" | "TUMMY" | "WAIST" | "HIPS_THIGHS";
+
+interface Dress {
+  id: string;                       // canonical code lowercased, e.g. "a1"
   name: string;
-  category: "top" | "dress" | "trouser" | "coord" | "party";
-  price: number;                          // INR
-  sizes: Size[];                          // "XL" | "2XL" | "3XL" | "4XL" | "5XL" | "6XL"
-  colors: string[];
-  bodyShapes: BodyShape[];                // apple | pear | hourglass | rectangle | inverted-triangle
-  fitObjectives: FitObjective[];          // smooth | define | balance | lengthen | enhance | skim | structure
-  concernsAddressed: Concern[];           // midsection | upper_arm | hips | thighs | shoulders | legs
-  fitType: string;                        // e.g. "structured-relaxed"
+  fitCategory: FitCategory;
+  price: 1099 | 1299 | 1499;        // ₹ INR — identical across all sizes
+  sizes: ["L", "XL", "2XL", "3XL", "4XL"];
+  whyItWorks: string[];             // design features addressing the fit concern
   fabric: string;
-  stretchLevel: "none" | "low" | "medium" | "high";
-  length: string;
-  occasions: string[];
-  styleTags: string[];
-  images: string[];
-  modelInfo: { size: string; height: string; };
+  care: string;
+  modelSize: string;
+  images: { front: string; threeQuarter: string; side: string; back: string; detail: string };
 }
 ```
+
+Prices are ₹1,099 / ₹1,299 / ₹1,499 and are **identical across all sizes** — enforce with a type/unit check, not convention.
 
 ---
 
 ## Product page structure
 
-Every product page follows this layout:
+Every product page includes, in order:
 
-1. **Product name** + price
-2. **Silhouette tags** — e.g. SMOOTH · DEFINE · SKIM
-3. **"Why we designed it"** — one paragraph explaining construction intent
-4. **"Best suited for"** — body shapes + concerns addressed
-5. **Fit description** — e.g. "Relaxed through stomach / Structured at waist / A-line through hip"
-6. **Model info** — size worn, height, usual size (not "model wears M")
-7. **Fabric** — composition
-8. **Size selector** — XL through 6XL
-9. **Fit Finder CTA** — "Not sure about your size? Find My Fit"
+1. Product name + price
+2. Fit focus — its ARMS / BUST / TUMMY / WAIST / HIPS & THIGHS category
+3. **Why It Works** — the design features that address the fit concern (the most important section)
+4. Fabric
+5. Care instructions
+6. Size selector — L / XL / 2XL / 3XL / 4XL
+7. Model size
+8. Size-guide link
+9. Shipping information
+10. Return information
+11. Payment methods (prepaid + COD)
+12. Reviews
+13. Recommended dresses
+
+**Why It Works** example: "Strategic diagonal drape creates a clean visual line through the midsection · designed with appropriate abdominal ease · structured enough to hold its silhouette without clinging · midi length creates an uninterrupted vertical line."
 
 ---
 
 ## Fit Finder
 
-Rule-based recommendation engine (no AI claims). Five steps:
+Rule-based, deterministic recommendation — **never called "AI"** in code or copy. The customer selects one or more fit concerns; the engine recommends relevant dresses.
 
-1. **Usual size** — XL / 2XL / 3XL / 4XL / 5XL / 6XL
-2. **Where do you prefer more room?** — Bust / Stomach / Hips / Thighs / Arms / Overall
-3. **What do you want your outfit to do?** — Define / Smooth / Balance / Lengthen / Enhance / Relax
-4. **Preferred fit** — Fitted / Structured / Relaxed / Oversized
-5. **Body shape** — Apple / Pear / Hourglass / Rectangle / Inverted triangle / Not sure
+- **Input:** one or more fit concerns — ARMS / BUST / TUMMY / WAIST / HIPS & THIGHS
+- **Signature:** `recommend(concerns: FitCategory[]): Dress[]`
+- **Scoring:** score by category match, stable-sort by score then price. No randomness, no network, no model.
 
-**Output:** A named fit profile (e.g. "The Balanced Sculpt") with preference summary and 3 product recommendations.
-
-**Scoring logic:**
-```
-Product score =
-  body_shape_match × 30 +
-  concern_match × 30 +
-  goal_match × 25 +
-  fit_preference × 15
-```
-
-Implement in `lib/fit-engine.ts`.
+Implement in `lib/fit-finder/` as a pure function, unit-tested (fixed input → fixed output).
 
 ---
 
 ## Homepage sections (in order)
 
+Exactly **8** sections:
+
 | # | Section | Content |
 |---|---|---|
-| 1 | **Hero** | "FASHION THAT FITS YOUR SHAPE." / Trendy silhouettes. Thoughtful construction. XL–6XL. / CTAs: Shop the Collection, Find Your Fit |
-| 2 | **Your Body. Your Silhouette.** | Silhouette tag pills: SMOOTH, DEFINE, BALANCE, LENGTHEN, ENHANCE / "Every body has different proportions. Your clothes should account for that." |
-| 3 | **What Do You Want Your Outfit To Do?** | Cards: Define my waist / Smooth my midsection / Balance my proportions / Give my arms more coverage / Create longer-looking legs / Add shape |
-| 4 | **Designed Differently** | Close-up garment imagery / "We develop our fits around fuller proportions, movement and the way the garment is actually worn." |
-| 5 | **Looks Expensive. Doesn't Cost Like It.** | Price range: ₹599–₹1,499 |
-| 6 | **Meet The Silhouettes** | Product cards grid |
-| 7 | **Find Your Fit** | CTA: "Take the 60-second Fit Finder" |
-| 8 | **Real People. Real Fits.** | Customer/model imagery — different sizes wearing same products |
-| 9 | **XL–6XL. Every Style.** | Size-inclusive messaging |
-| 10 | **Social proof** | Instagram feed / UGC |
+| 1 | **Hero** | Editorial photo + "SCULPTED BY DESIGN." / "Sophisticated dresses designed around your proportions." / CTAs: SHOP THE COLLECTION, FIND YOUR FIT |
+| 2 | **Dresses Designed Differently** | "A fuller body isn't simply a larger version of a smaller body…" + display line: **L–4XL · INDIA-FIRST · SAME PRICE ACROSS SIZES** |
+| 3 | **Shop by Fit** | Five category cards: ARMS, BUST, TUMMY, WAIST, HIPS & THIGHS |
+| 4 | **The Contour Collection** | Editorial grid of all 15 dresses; each card: image, name, fit category, price, sizes, "View Dress" |
+| 5 | **Not Sized Up. Thought Through.** | Design-philosophy copy |
+| 6 | **Fit Finder** | "FIND YOUR CONTOUR" — select a fit concern, get recommendations |
+| 7 | **Your Size. Your Price.** | "L–4XL, same price across every size." / CTA: VIEW SIZE GUIDE |
+| 8 | **Why Contour? (About)** | Brand story |
 
 ---
 
-## Website navigation (MVP)
+## Website navigation
 
-```
-HOME
-SHOP
- ├── All
- ├── Tops
- ├── Dresses
- ├── Trousers
- ├── Co-ords
- ├── Workwear
- └── Partywear
-SHOP BY FIT
- ├── Smooth
- ├── Define
- ├── Balance
- ├── Lengthen
- ├── Enhance
- └── Skim
-FIT FINDER
-SIZE GUIDE
-NEW DROP
-OUR APPROACH
-JOURNAL
-CONTACT
-```
+CONTOUR · SHOP · SHOP BY FIT · FIT FINDER · OUR APPROACH · SIZE GUIDE · ABOUT · SEARCH · ACCOUNT · CART
 
-Secondary navigation system: "SHOP BY WHAT YOU WANT" / "I WANT TO…" cards linking to fit-filtered product lists.
+Cart is a quiet front-end drawer (no backend claims). Keep navigation minimal — no tops/trousers/skirts/co-ords/collections/journal categories.
+
+**Route map (App Router):** `/`, `/shop`, `/shop-by-fit` → `/shop-by-fit/[category]`, `/fit-finder`, `/our-approach`, `/size-guide`, `/about`, `/products/[id]`.
 
 ---
 
 ## Website filters
 
-**Standard:** Category, Size, Price, Colour, Occasion
-
-**Fit filters (differentiator):**
-- Fit objective: Smooth / Define / Balance / Lengthen / Enhance / Skim
-- Body consideration: Midsection / Arms / Hips / Thighs / Shoulders / Legs
+Filter dresses by **fit category** (ARMS / BUST / TUMMY / WAIST / HIPS & THIGHS), and optionally by colour family. Size (all L–4XL) and price (₹1,099 / ₹1,299 / ₹1,499) are uniform across the collection.
 
 ---
 
 ## Size guide
 
-Must show per-size measurements for: Bust, Waist, Hip, Upper arm. Plus garment-specific fit notes ("This style has extra room through the midsection"). Include visual measurement guide.
+Show per-size measurements for **L, XL, 2XL, 3XL, 4XL** across Bust, Waist, Hip and Upper arm, plus garment-specific fit notes (e.g. "extra room through the midsection") and a visual measurement guide.
 
 ---
 
 ## Visual identity
 
-**Direction:** Minimal fashion editorial — the brand should look more expensive than it is.
+**Direction:** Minimal, quiet-luxury fashion editorial — classy, elegant, chic, timeless, sophisticated, expensive, feminine, modern, restrained.
+
+**Foundation:** black (hero colour), ivory, warm white, charcoal and muted neutrals. Sophisticated serif for headlines; clean modern sans for nav and body. Generous whitespace, hairline borders, restrained UI.
 
 | Use | Avoid |
 |---|---|
-| Clean typography | Pink-heavy "curvy girl" aesthetics |
-| Neutral base palette | Excessive body-positive slogans |
-| Strong photography | Overly feminine graphics |
-| One accent colour | Cartoon bodies |
-| Large product imagery | Cliché measuring tapes |
-| Editorial layouts | "Love yourself" messaging |
-| Sophisticated packaging feel | All-black product range |
+| Editorial serif headlines + clean sans body | Pink-heavy "curvy girl" aesthetics |
+| Black + warm-neutral palette, muted accents only | Neon / saturated / hot-pink / electric colours |
+| Full-bleed editorial photography, garment in focus | Body-positive slogans, "love yourself" messaging |
+| Hairline borders, generous whitespace | Rounded drop-shadow cards, cheap ecommerce patterns |
+| Large product imagery at consistent ratios | Promo/sale banners, discount badges, countdowns |
+| Restrained, subtle motion | Loud gradients, flashy animation, cartoon bodies |
+
+---
+
+## Colour direction
+
+Black is the hero colour, used alongside sophisticated muted colours. Approved families: black, charcoal, espresso, chocolate, taupe, stone, cream, deep navy, burgundy, wine, dusty rose, muted pink, powder pink, muted mauve, dusty blue, slate blue, muted lavender, muted sage, soft olive. Pinks/oranges/yellows/blues are allowed only if muted, pastel or dusty. **Never** neon, fluorescent, or highly saturated colours.
 
 ---
 
@@ -272,11 +216,20 @@ Must show per-size measurements for: Bust, Waist, Hip, Upper arm. Plus garment-s
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Framework | Next.js + TypeScript | App router |
-| Styling | Tailwind CSS | |
-| Backend (MVP) | Supabase | Auth, DB, customer profiles, Fit Finder results, product data |
-| Commerce (recommended) | Shopify backend + custom Next.js storefront | Handles products, inventory, orders, payments, discounts |
-| Payments | Razorpay (when ready) | Indian payment provider |
+| Framework | Next.js App Router (16.x) | React 19, RSC by default |
+| Language | TypeScript 5 | |
+| Styling | Tailwind CSS v4 | `@theme` design tokens |
+| Motion | framer-motion | Subtle, ≤400ms, honour `prefers-reduced-motion` |
+| Testing | Vitest | Fit Finder unit tests |
+| Cart | Front-end drawer only | No backend claims |
+
+**Out of scope for this revamp:** no backend or commerce platform is committed. Any future Supabase / Shopify / Razorpay integration is out of scope here — the cart is a quiet front-end drawer.
+
+---
+
+## Payment
+
+Communicate accepted methods — **prepaid** and **COD** — clearly but unobtrusively (e.g. in the footer). No live payment processing is in scope for this revamp.
 
 ---
 
@@ -285,38 +238,28 @@ Must show per-size measurements for: Bust, Waist, Hip, Upper arm. Plus garment-s
 ```
 contour-brand/
 ├── app/
-│   ├── page.tsx              # Homepage
-│   ├── shop/                 # Product listing + filters
-│   ├── products/             # Product detail pages
-│   ├── fit-finder/           # Fit Finder flow
-│   ├── collections/          # Collection pages
-│   ├── about/                # Our Approach
+│   ├── page.tsx              # Homepage (8 sections)
+│   ├── shop/                 # All 15 dresses
+│   ├── shop-by-fit/          # 5 category cards
+│   │   └── [category]/       # Filtered listing
+│   ├── fit-finder/
+│   ├── our-approach/
 │   ├── size-guide/
-│   ├── journal/
-│   └── cart/
+│   ├── about/
+│   └── products/[id]/        # Dress detail page
 ├── components/
-│   ├── Header.tsx
-│   ├── Hero.tsx
-│   ├── ProductCard.tsx
-│   ├── FitFinder.tsx
-│   ├── FitProfile.tsx
-│   ├── ProductFilters.tsx
-│   ├── SizeGuide.tsx
-│   ├── SilhouetteBadge.tsx
-│   └── ReviewSection.tsx
-├── data/
-│   ├── products.ts
-│   ├── bodyShapes.ts
-│   ├── fitProfiles.ts
-│   └── collections.ts
+│   ├── layout/               # Header/Nav + Footer
+│   ├── home/                 # 8 homepage sections
+│   ├── product/              # Product card, grid, PDP
+│   ├── shop/                 # Shop + shop-by-fit listings
+│   ├── fit-finder/           # Fit Finder UI
+│   ├── editorial/            # About, Our Approach, Size Guide bodies
+│   └── ui/                   # Shared primitives (Button, Heading, Price, SizeSelector, ImageFrame, …)
+├── data/                     # Typed Dress model + all 15 dresses + copy blocks
 ├── lib/
-│   ├── shopify.ts
-│   ├── fit-engine.ts
-│   └── analytics.ts
-├── public/
-│   ├── images/
-│   └── icons/
-├── styles/
+│   ├── design/               # Tokens, fonts, Tailwind theme, motion
+│   └── fit-finder/           # Deterministic scoring engine
+├── public/images/            # Dress imagery (front/3-4/side/back/detail)
 ├── CLAUDE.md
 ├── AGENTS.md
 └── package.json
@@ -328,55 +271,62 @@ contour-brand/
 
 | Sprint | Deliverable |
 |---|---|
-| 1 | **Design system** — brand name (temp), typography, colour system, buttons, cards, nav, spacing, responsive layout |
-| 2 | **Homepage** — all 10 sections |
-| 3 | **Product listing** — shop page with standard + fit filters |
-| 4 | **Product page** — full layout per spec above |
-| 5 | **Fit Finder** — 5-step flow + scoring engine + profile output |
-| 6 | **Size guide** — measurement table + visual guide + per-product fit notes |
-| 7 | **Cart + checkout** — Shopify integration |
-| 8 | **Analytics** — event tracking |
+| 1 | **Design system** — tokens, typography, colour, buttons, cards, nav, spacing, responsive layout |
+| 2 | **Homepage** — all 8 sections |
+| 3 | **Shop** — `/shop` (all 15) + `/shop-by-fit` category listings |
+| 4 | **Product page** — full PDP per spec above |
+| 5 | **Fit Finder** — deterministic scoring engine + UI |
+| 6 | **Size guide** — measurement table (L–4XL) + visual guide + per-dress fit notes |
+| 7 | **Editorial pages** — About, Our Approach |
+| 8 | **Cart drawer** — front-end only |
 | 9 | **Mobile optimization** — responsive pass |
-| 10 | **Production deployment** |
+| 10 | **Production build + evidence sweep** |
 
-This is a landing-page-first project. Start with Sprints 1–2 to prove the brand experience before building commerce.
+Landing-page-first: start with Sprints 1–2 to prove the brand experience.
 
 ---
 
-## MVP pages (must-have)
+## MVP pages
 
-Homepage, Shop, Product pages, Size guide, Fit Finder, Cart, Checkout, About/Our Approach, Shipping, Returns, Contact
+Homepage, Shop, Shop by Fit, Product pages, Fit Finder, Size Guide, Our Approach, About. Cart is a front-end drawer.
 
 ## Post-MVP (later)
 
-Loyalty, AI stylist, deep personalisation, reviews with body profile, user accounts, wishlist, virtual styling, subscription/wardrobe features
+Loyalty, personalisation, richer reviews, user accounts, wishlist.
 
 ---
 
 ## Campaign headline
 
-**Primary:** "YOUR BODY ISN'T DIFFICULT. THE FIT WAS."
-
-**Secondary:** "DESIGNED AROUND YOU."
+**Primary:** SCULPTED BY DESIGN.
+**Supporting:** Dresses designed around your proportions.
+**Philosophy:** Not sized up. Thought through.
 
 ---
 
 ## Target customer
 
-Fashion-conscious, price-conscious Indian women, XL–6XL. Ages 18–45, digitally active. Primary launch segment: 25–34.
+Women approximately 25–45 in India who want sophisticated, polished, elegant fashion. She may struggle to find dresses that fit properly around the arms, bust, tummy, waist, hips or thighs, but does not necessarily identify primarily as a "plus-size shopper." She wants beautiful fashion first, intelligent fit second.
 
 ---
 
-## Pricing architecture
+## Brand language
 
-| Category | Price range (INR) |
+Tone: elegant, confident, intelligent, minimal, fashion-forward. Never childish, never overly enthusiastic, never body-shaming, never overly clinical. **Avoid the phrase "plus-size" in customer-facing copy** — use proportions, fit, silhouette, construction, ease, coverage, definition and design instead. (Internal notes may use it.)
+
+---
+
+## Pricing
+
+Three price points, identical across all sizes:
+
+| Price (₹) | Tier |
 |---|---|
-| Basic tops | ₹599–₹799 |
-| Fashion tops | ₹799–₹999 |
-| Trousers | ₹899–₹1,299 |
-| Dresses | ₹999–₹1,499 |
-| Co-ords | ₹1,299–₹1,499 |
-| Partywear | ₹1,199–₹1,499 |
+| ₹1,099 | Entry-level |
+| ₹1,299 | Core collection |
+| ₹1,499 | Statement / more detailed construction |
+
+Range ₹1,000–₹1,500. All L–4XL sizes have identical pricing. Always displayed in ₹ (INR).
 
 ---
 
@@ -403,3 +353,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+
+
+
+
+
+
+

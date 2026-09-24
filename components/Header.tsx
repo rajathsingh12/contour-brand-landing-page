@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ThemeSwitcher } from "./ThemeSwitcher";
-import { ModeToggle } from "./ModeToggle";
 
 const SHOP_LINKS = [
   { href: "/shop", label: "All Dresses" },
@@ -17,7 +15,7 @@ const FIT_LINKS = [
   { href: "/shop-by-fit/hips-thighs", label: "Hips & Thighs" },
 ];
 
-const NAV_LINK_CLASS = "text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors";
+const NAV_LINK_CLASS = "text-sm font-medium tracking-wide uppercase hover:text-gray-600 transition-colors duration-[250ms] ease-out";
 
 function Dropdown({ label, links }: { label: string; links: { href: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
@@ -32,12 +30,12 @@ function Dropdown({ label, links }: { label: string; links: { href: string; labe
       </button>
       {open && (
         <div className="absolute left-0 top-full pt-2 z-50">
-          <div className="bg-c-surface border border-c-border rounded-lg shadow-lg py-2 min-w-[160px]">
+          <div className="bg-white border border-gray-200 shadow-lg py-2 min-w-[160px]">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="block px-4 py-2 text-sm hover:bg-c-accent-light hover:text-c-accent transition-colors"
+                className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors duration-[250ms] ease-out"
               >
                 {l.label}
               </Link>
@@ -53,11 +51,11 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-c-surface/95 backdrop-blur border-b border-c-border">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="font-heading text-xl font-bold tracking-widest uppercase">
-            Contour
+          <Link href="/" className="font-display text-xl font-normal tracking-widest uppercase">
+            CONTOUR
           </Link>
 
           {/* Desktop nav */}
@@ -71,8 +69,6 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <ModeToggle />
-            <ThemeSwitcher />
             {/* Mobile menu button */}
             <button
               className="md:hidden p-2"
@@ -95,13 +91,13 @@ export function Header() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="md:hidden border-t border-c-border bg-c-surface px-4 py-4 space-y-3">
+        <nav className="md:hidden border-t border-gray-200 bg-white px-4 py-4 space-y-3">
           <Link href="/" className="block text-sm font-medium uppercase">Home</Link>
-          <div className="text-xs font-bold uppercase text-c-text-secondary mt-3">Shop</div>
+          <div className="text-xs font-bold uppercase text-gray-600 mt-3">Shop</div>
           {SHOP_LINKS.map((l) => (
             <Link key={l.href} href={l.href} className="block text-sm pl-3">{l.label}</Link>
           ))}
-          <div className="text-xs font-bold uppercase text-c-text-secondary mt-3">Shop by Fit</div>
+          <div className="text-xs font-bold uppercase text-gray-600 mt-3">Shop by Fit</div>
           {FIT_LINKS.map((l) => (
             <Link key={l.href} href={l.href} className="block text-sm pl-3">{l.label}</Link>
           ))}

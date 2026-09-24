@@ -244,13 +244,9 @@ Minimal jewellery.
 
 The garments must remain the visual focus.
 
-Each product should ideally have:
+Each product ships with a single editorial image — its cropped reference from `docs/new-data/new-cropped-images/`.
 
-* front view
-* 3/4 view
-* side view
-* back view
-* close-up/detail view
+Multi-view galleries (front / 3⁄4 / side / back / detail) are out of scope for this collection.
 
 ## HOMEPAGE
 

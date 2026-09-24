@@ -1,116 +1,76 @@
 @import "tailwindcss";
 
-/* ── Contour theme system ── */
-/* Default: Burgundy */
-:root {
-  --c-bg: #faf8f6;
-  --c-surface: #ffffff;
-  --c-text: #1a1a1a;
-  --c-text-secondary: #5c5c5c;
-  --c-accent: #6b2139;
-  --c-accent-hover: #8a2b4a;
-  --c-accent-light: #f2e4e9;
-  --c-border: #e5e0dc;
-  --c-badge-bg: #f5f0ed;
-  --c-badge-text: #6b2139;
+@theme {
+  /* Colors */
+  --color-black: #000000;
+  --color-ivory: #faf8f6;
+  --color-charcoal: #2a2a2a;
+  --color-warm-white: #ffffff;
+
+  --color-taupe: #9b8b7e;
+  --color-stone: #b5a89a;
+  --color-cream: #f5f0eb;
+
+  --color-burgundy: #6b2139;
+  --color-deep-navy: #1a2845;
+  --color-dusty-rose: #c4989b;
+  --color-soft-olive: #898b75;
+
+  --color-gray-50: #f9f9f9;
+  --color-gray-100: #ececec;
+  --color-gray-200: #d9d9d9;
+  --color-gray-300: #b3b3b3;
+  --color-gray-400: #8c8c8c;
+  --color-gray-500: #666666;
+  --color-gray-600: #4d4d4d;
+  --color-gray-700: #333333;
+  --color-gray-800: #1a1a1a;
+  --color-gray-900: #0d0d0d;
+
+  /* Typography */
+  --font-family-display: var(--font-fraunces), serif;
+  --font-family-body: var(--font-inter), sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
+
+  /* Animation durations */
+  --animate-duration-fast: 150ms;
+  --animate-duration-normal: 250ms;
+  --animate-duration-slow: 400ms;
 }
 
-[data-theme="sage"] {
-  --c-bg: #f6f8f5;
-  --c-surface: #ffffff;
-  --c-text: #1a1a1a;
-  --c-text-secondary: #5c5c5c;
-  --c-accent: #4a6741;
-  --c-accent-hover: #5a7d50;
-  --c-accent-light: #e4ede2;
-  --c-border: #dce5d9;
-  --c-badge-bg: #edf2eb;
-  --c-badge-text: #4a6741;
-}
-
-[data-theme="midnight"] {
-  --c-bg: #f5f5f8;
-  --c-surface: #ffffff;
-  --c-text: #1a1a1a;
-  --c-text-secondary: #5c5c5c;
-  --c-accent: #2c3e6b;
-  --c-accent-hover: #3a5190;
-  --c-accent-light: #e0e4f0;
-  --c-border: #d8dce8;
-  --c-badge-bg: #ebeef5;
-  --c-badge-text: #2c3e6b;
-}
-
-[data-theme="ember"] {
-  --c-bg: #faf6f4;
-  --c-surface: #ffffff;
-  --c-text: #1a1a1a;
-  --c-text-secondary: #5c5c5c;
-  --c-accent: #b0582a;
-  --c-accent-hover: #c96a35;
-  --c-accent-light: #f5e8de;
-  --c-border: #e8ddd4;
-  --c-badge-bg: #f5efe9;
-  --c-badge-text: #b0582a;
-}
-
-/* ── Dark mode variants ── */
-[data-mode="dark"] {
-  --c-bg: #1a1a1a;
-  --c-surface: #242424;
-  --c-text: #f5f5f5;
-  --c-text-secondary: #a0a0a0;
-  --c-accent-light: #2e2228;
-  --c-border: #3a3a3a;
-  --c-badge-bg: #2a2a2a;
-  --c-badge-text: #e8a0b8;
-}
-
-[data-mode="dark"] img {
-  border: 1px solid var(--c-border);
-}
-
-[data-mode="dark"][data-theme="burgundy"] {
-  --c-accent-light: #2e2228;
-  --c-badge-text: #e8a0b8;
-}
-
-[data-mode="dark"][data-theme="sage"] {
-  --c-accent-light: #222e20;
-  --c-badge-text: #8fbf82;
-}
-
-[data-mode="dark"][data-theme="midnight"] {
-  --c-accent-light: #1e2338;
-  --c-badge-text: #8a9fd4;
-}
-
-[data-mode="dark"][data-theme="ember"] {
-  --c-accent-light: #2e2218;
-  --c-badge-text: #d4956a;
-}
-
-@theme inline {
-  --color-c-bg: var(--c-bg);
-  --color-c-surface: var(--c-surface);
-  --color-c-text: var(--c-text);
-  --color-c-text-secondary: var(--c-text-secondary);
-  --color-c-accent: var(--c-accent);
-  --color-c-accent-hover: var(--c-accent-hover);
-  --color-c-accent-light: var(--c-accent-light);
-  --color-c-border: var(--c-border);
-  --color-c-badge-bg: var(--c-badge-bg);
-  --color-c-badge-text: var(--c-badge-text);
-  --font-heading: var(--font-playfair);
-  --font-body: var(--font-dm-sans);
-}
-
+/* Base styles */
 body {
-  background: var(--c-bg);
-  color: var(--c-text);
-  font-family: var(--font-dm-sans), sans-serif;
+  background-color: #faf8f6;
+  color: #000000;
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-fraunces), serif;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
