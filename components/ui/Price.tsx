@@ -1,7 +1,8 @@
 import { HTMLAttributes } from "react";
+import type { Price as PriceValue } from "@/data/dresses";
 
 export interface PriceProps extends HTMLAttributes<HTMLSpanElement> {
-  amount: 1099 | 1299 | 1499;
+  amount: PriceValue;
   size?: "sm" | "md" | "lg";
 }
 

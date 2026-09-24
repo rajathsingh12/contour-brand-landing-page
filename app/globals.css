@@ -1,21 +1,39 @@
 @import "tailwindcss";
 
+/* Colour tokens mirror lib/design/tokens.ts — keep the two in sync.
+   Type scale + spacing use Tailwind v4 defaults; motion spec lives in
+   lib/animations.ts. */
 @theme {
-  /* Colors */
+  /* Core */
   --color-black: #000000;
-  --color-ivory: #faf8f6;
   --color-charcoal: #2a2a2a;
+  --color-ivory: #faf8f6;
   --color-warm-white: #ffffff;
 
+  /* Warm neutrals */
   --color-taupe: #9b8b7e;
   --color-stone: #b5a89a;
   --color-cream: #f5f0eb;
 
-  --color-burgundy: #6b2139;
-  --color-deep-navy: #1a2845;
+  /* Warm darks */
+  --color-espresso: #3c2c20;
+  --color-chocolate: #593f2c;
+
+  /* Muted accents (HSL saturation ≤ 40%) */
+  --color-burgundy: #612e3b;
+  --color-wine: #66333c;
+  --color-deep-navy: #223049;
+  --color-dusty-blue: #708ca9;
+  --color-slate-blue: #5c6f8a;
   --color-dusty-rose: #c4989b;
+  --color-muted-pink: #cca4aa;
+  --color-powder-pink: #e6d1d4;
+  --color-muted-mauve: #a78194;
+  --color-muted-lavender: #ad9bbf;
+  --color-muted-sage: #8fae8f;
   --color-soft-olive: #898b75;
 
+  /* Neutral ramp */
   --color-gray-50: #f9f9f9;
   --color-gray-100: #ececec;
   --color-gray-200: #d9d9d9;
@@ -27,35 +45,16 @@
   --color-gray-800: #1a1a1a;
   --color-gray-900: #0d0d0d;
 
-  /* Typography */
-  --font-family-display: var(--font-fraunces), serif;
-  --font-family-body: var(--font-inter), sans-serif;
-
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
-  --font-size-7xl: 4.5rem;
-  --font-size-8xl: 6rem;
-  --font-size-9xl: 8rem;
-
-  /* Animation durations */
-  --animate-duration-fast: 150ms;
-  --animate-duration-normal: 250ms;
-  --animate-duration-slow: 400ms;
+  /* Font families (Tailwind v4 `--font-*` namespace → font-display / font-body) */
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-inter), sans-serif;
 }
 
 /* Base styles */
 body {
-  background-color: #faf8f6;
-  color: #000000;
-  font-family: var(--font-inter), sans-serif;
+  background-color: var(--color-ivory);
+  color: var(--color-black);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

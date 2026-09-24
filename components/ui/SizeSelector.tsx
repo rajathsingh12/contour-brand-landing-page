@@ -1,16 +1,13 @@
 "use client";
 
 import { useState } from "react";
-
-type Size = "L" | "XL" | "2XL" | "3XL" | "4XL";
+import { SIZES, type Size } from "@/data/dresses";
 
 export interface SizeSelectorProps {
   value?: Size;
   onChange?: (size: Size) => void;
   className?: string;
 }
-
-const SIZES: Size[] = ["L", "XL", "2XL", "3XL", "4XL"];
 
 export function SizeSelector({ value, onChange, className = "" }: SizeSelectorProps) {
   const [selected, setSelected] = useState<Size | undefined>(value);

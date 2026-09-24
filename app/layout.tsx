@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Contour — Fashion That Fits Your Shape",
+  title: "Contour — Sculpted by Design",
   description:
-    "Silhouette-engineered clothing for women XL–6XL. Trendy fits, thoughtful construction, accessible prices.",
+    "Sophisticated dresses designed around your proportions. L–4XL, same price across every size.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
