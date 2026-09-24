@@ -6,23 +6,15 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 import { ModeToggle } from "./ModeToggle";
 
 const SHOP_LINKS = [
-  { href: "/shop", label: "All" },
-  { href: "/shop?category=top", label: "Tops" },
-  { href: "/shop?category=dress", label: "Dresses" },
-  { href: "/shop?category=trouser", label: "Trousers" },
-  { href: "/shop?category=coord", label: "Co-ords" },
-  { href: "/shop?category=workwear", label: "Workwear" },
-  { href: "/shop?category=partywear", label: "Partywear" },
+  { href: "/shop", label: "All Dresses" },
 ];
 
 const FIT_LINKS = [
-  { href: "/shop?fit=smooth", label: "Smooth" },
-  { href: "/shop?fit=define", label: "Define" },
-  { href: "/shop?fit=balance", label: "Balance" },
-  { href: "/shop?fit=lengthen", label: "Lengthen" },
-  { href: "/shop?fit=enhance", label: "Enhance" },
-  { href: "/shop?fit=skim", label: "Skim" },
-  { href: "/shop?fit=structure", label: "Structure" },
+  { href: "/shop-by-fit/arms", label: "Arms" },
+  { href: "/shop-by-fit/bust", label: "Bust" },
+  { href: "/shop-by-fit/tummy", label: "Tummy" },
+  { href: "/shop-by-fit/waist", label: "Waist" },
+  { href: "/shop-by-fit/hips-thighs", label: "Hips & Thighs" },
 ];
 
 const NAV_LINK_CLASS = "text-sm font-medium tracking-wide uppercase hover:text-c-accent transition-colors";

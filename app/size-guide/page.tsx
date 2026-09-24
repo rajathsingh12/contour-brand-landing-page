@@ -27,30 +27,10 @@ function RangeCell({ range }: { range: [number, number] }) {
 
 const GARMENT_NOTES = [
   {
-    category: "Tops",
-    notes: [
-      "Our sculpt tees have internal contouring panels — they fit closer through the midsection without compression.",
-      "Drop shoulder styles have extended seams for relaxed upper-arm coverage.",
-    ],
-  },
-  {
     category: "Dresses",
     notes: [
       "A-line midis have extra room through the hip for a smooth drape.",
       "Wrap dresses are designed with a deeper wrap to stay secure across a fuller bust.",
-    ],
-  },
-  {
-    category: "Trousers",
-    notes: [
-      "All trousers have a contoured waistband — no gaping at the back.",
-      "Wide-leg styles are cut with extra thigh room that flows into the wide hem.",
-    ],
-  },
-  {
-    category: "Co-ords",
-    notes: [
-      "Co-ord sets are designed so the top and bottom work independently across different sizes if needed.",
     ],
   },
 ];
